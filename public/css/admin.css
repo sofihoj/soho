@@ -62,3 +62,134 @@ a {
 table a:visited {
     color: #47453C;
 }
+
+.form {
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin: 30px 80px;
+    border-radius: 5px;
+}
+
+.inputs input {
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    width: 100%;
+    margin: 10px 15px 15px 0;
+}
+
+form {
+    width: 100%;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+}
+
+.form {
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin: 30px 80px;
+    border-radius: 5px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    min-width: 150px;
+}
+
+.form-group label {
+    color: #47453C;
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+.form-group input {
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    margin-bottom: 15px;
+    min-width: 150px;
+}
+
+.form button {
+    background-color: #9A6C6C;
+    color: #ebebeb;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 10px 25px;
+    text-transform: uppercase;
+}
+
+#volver {
+    background-color: #EBEBEB;
+    color: #9A6C6C;
+    border: #9A6C6C solid 1px;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 10px 25px;
+    text-transform: uppercase;
+}
+
+#volver:hover {
+    font-weight: bold;
+    transform: scale(1.01);
+    opacity: 0.9;
+}
+
+.form p {
+    font-size: 15px;
+    color: #47453C;
+}
+
+.form p a {
+    color: #47453C;
+}
+
+.form p a:hover {
+    font-weight: bold;
+}
+
+.input-box {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+}
+
+@media (max-width: 480px) {
+    form {
+        width: 90%;
+    }
+    .form {
+        padding: 20px;
+        margin: 20px 40px;
+    }
+
+    .form p {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .form button {
+        padding: 15px 15px;
+    }
+}
