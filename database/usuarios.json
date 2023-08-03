@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "nombre": "nombre",
+        "apellido": "apellido",
+        "email": "email@email.com",
+        "telefono": "5555555",
+        "contraseña": "abc123",
+        "direccion": "calle 132",
+        "categoria": "admin"
+    }
+
+]
