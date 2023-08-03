@@ -37,13 +37,8 @@ Inicializar el servidor:
 - https://www.naturalmacrame.com.ar/
 - https://modernmacrame.com/
 
-## Members
+## Made by
 
 |Photo | Name  | Mail | Github
 | :-----: | :-----: | :-----: | :-----: |
-<img src="https://avatars.githubusercontent.com/u/105887654?v=4" height="50" width="50">| Bernal, Vanesa | evbp080116@gmail.com | [@evy32](https://github.com/evy32)
-<img src="https://avatars.githubusercontent.com/u/132092838?v=4" height="50" width="50">| Carrero, Isabel | isabel.carrero88@gmail.com | [@isaCP14](https://github.com/isaCP14)
 <img src="https://avatars.githubusercontent.com/u/90708856?v=4" height="50" width="50">| Hojberg, Sofía | sofiahojberg@gmail.com | [@sofihoj](https://github.com/sofihoj)
-
-## Tablero de trabajo
-- [Trello | BISNE](https://trello.com/b/t93lLitW/bisne)
