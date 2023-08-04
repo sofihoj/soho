@@ -14,31 +14,22 @@
         <main>
             <%- include('./partials/sidebar.ejs')%>
             <section class="main-header">
-                <p>Category Name</p>
+                <p><%= tituloCategoria %></p>
             </section>
             <div class="cont">
                 <section class="photos">
-                    <div class="smallPhotos">
-                        <div class="cajita"></div>
-                        <div class="cajita"></div>
-                        <div class="cajita"></div>
-                        <div class="cajita"></div>
-                    </div>
-                    <div class="caja"></div>
-                    <div class="slice">
-                        <div class="slices"></div>
-                        <div class="slices"></div>
-                        <div class="slices"></div>
+                    <div class="caja">
+                        <img src="/img/<%= categoriaEncontrada.categoria %>/<%= producto.imagen %>" alt="">
                     </div>
                 </section>
                 <section class="description">
-                    <h2>NOMBRE DEL PRODUCTO</h2>
+                    <h2><%= producto.nombre.toUpperCase() %></h2>
                     <div class="productDescription">
-                        <p>Descripción producto/detalle de medidas</p>
+                        <p><%= producto.descripcion %></p>
                     </div>
                     <div class="funcionalidades">
                         <section>
-                            <h2>$PRECIO</h2>
+                            <h2>$<%= producto.precio %></h2>
                             <div class="cantidadProductos">
                                 <button id="menos">-</button>
                                 <input type="number" value="1">

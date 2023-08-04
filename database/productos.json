@@ -4,36 +4,36 @@
         "productos": [
             {
                 "id": 1,
-                "nombre": "Amalia",
+                "nombre": "amalia",
                 "precio": "18000",
                 "descripcion": "Ancho: 130cm - Alto 70cm",
                 "imagen": "amalia.jpg"
             },
             {
                 "id": 2,
-                "nombre": "Eloisa",
+                "nombre": "eloisa",
                 "precio": "9500",
                 "descripcion": "Ancho: 130cm - Alto 70cm",
                 "imagen": "eloisa.jpg"
             },
             {
                 "id": 3,
-                "nombre": "Gal",
+                "nombre": "gal",
                 "precio": "18000",
                 "descripcion": "Ancho: 130cm - Alto 70cm",
                 "imagen": "gal.jpeg"
             },
             {
                 "id": 4,
-                "nombre": "Ariel",
-                "precio": "18000",
+                "nombre": "ariel",
+                "precio": "5500",
                 "descripcion": "Ancho: 130cm - Alto 70cm",
                 "imagen": "ariel.jpeg"
             },
             {
                 "id": 5,
-                "nombre": "Candela",
-                "precio": "18000",
+                "nombre": "candela",
+                "precio": "7500",
                 "descripcion": "Ancho: 130cm - Alto 70cm",
                 "imagen": "candela.jpeg"
             }
@@ -44,21 +44,21 @@
         "productos": [
             {
                 "id": 1,
-                "nombre": "Goldina",
+                "nombre": "goldina",
                 "precio": "5000",
                 "descripcion": "Diámetro: 30cm",
                 "imagen": "goldina.jpg"
             },
             {
                 "id": 2,
-                "nombre": "Fidela",
+                "nombre": "fidela",
                 "precio": "5000",
                 "descripcion": "Diámetro: 30cm",
                 "imagen": "fidela.jpeg"
             },
             {
                 "id": 3,
-                "nombre": "Silvia",
+                "nombre": "silvia",
                 "precio": "5000",
                 "descripcion": "Diámetro: 30cm",
                 "imagen": "silvia.jpeg"
@@ -70,21 +70,21 @@
         "productos": [
             {
                 "id": 1,
-                "nombre": "Clásico",
+                "nombre": "clasico",
                 "precio": "2500",
                 "descripcion": "",
-                "imagen": ""
+                "imagen": "cuelga-maceta.jpeg"
             },
             {
                 "id": 2,
-                "nombre": "Flecos",
+                "nombre": "flecos",
                 "precio": "2500",
                 "descripcion": "",
                 "imagen": ""
             },
             {
                 "id": 3,
-                "nombre": "Nido",
+                "nombre": "nido",
                 "precio": "2500",
                 "descripcion": "",
                 "imagen": ""
@@ -96,24 +96,24 @@
         "productos": [
             {
                 "id": 1,
-                "nombre": "Borla",
+                "nombre": "borla",
                 "precio": "1000",
                 "descripcion": "",
-                "imagen": ""
+                "imagen": "borla.jpeg"
             },
             {
                 "id": 2,
-                "nombre": "Doble hoja",
+                "nombre": "doble hoja",
                 "precio": "1100",
                 "descripcion": "",
-                "imagen": ""
+                "imagen": "hoja-doble.jpeg"
             },
             {
                 "id": 3,
-                "nombre": "Hoja",
+                "nombre": "hoja",
                 "precio": "1500",
                 "descripcion": "",
-                "imagen": ""
+                "imagen": "hoja-grande.jpeg"
             }
         ]
     },
@@ -122,28 +122,28 @@
         "productos": [
             {
                 "id": 1,
-                "nombre": "Posavaso",
+                "nombre": "posavaso",
                 "precio": "600",
                 "descripcion": "16 cm",
                 "imagen": "posavasos.jpeg"
             },
             {
                 "id": 2,
-                "nombre": "Individual",
+                "nombre": "individual",
                 "precio": "4000",
                 "descripcion": "35 cm",
-                "imagen": ""
+                "imagen": "individual.jpeg"
             },
             {
                 "id": 3,
-                "nombre": "Llavero",
+                "nombre": "llavero",
                 "precio": "600",
                 "descripcion": "10 cm",
-                "imagen": ""
+                "imagen": "llavero.jpg"
             },
             {
                 "id": 4,
-                "nombre": "Lámpara",
+                "nombre": "lampara",
                 "precio": "7500",
                 "descripcion": "225 cm",
                 "imagen": ""

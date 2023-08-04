@@ -3,16 +3,7 @@
     margin: 0;
     padding: 0;
 }
-.main-header {
-    height: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-.main-header p {
-    font-size: 24px;
-}
+
 .cont {
     display: flex;
     justify-content: space-evenly;
@@ -41,7 +32,13 @@
 .caja {
     background-color: #D9D9D9;
     width: 100%;
-    height: 80%;
+    height: 100%;
+}
+
+.caja img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .description {
     width: 45%;

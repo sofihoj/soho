@@ -20,14 +20,28 @@ const controller = {
         res.render('productCart')
     },
     productDetail: (req, res) => {
-        res.render('productDetail')
+        const categoriaSeleccionada = req.params.category;
+        const productoSeleccionado = req.params.product;
+        const categoriaEncontrada = productos.find(categoria => categoria.categoria === categoriaSeleccionada);
+        tituloCategoria = formatearNombreCategoria(categoriaEncontrada.categoria)
+        if (categoriaEncontrada) {
+            const producto = categoriaEncontrada.productos.find(prod => prod.nombre === productoSeleccionado);
+            console.log(producto)
+            if (producto) {
+                res.render('productDetail', { producto , categoriaEncontrada, tituloCategoria});
+            } else {
+                res.render('error');
+            }
+        } else {
+            res.render('error');
+        }
     },
     categories: (req, res) => {
         const categoriaSeleccionada = req.params.categoria;
         const categoriaEncontrada = productos.find(categoria => categoria.categoria === categoriaSeleccionada)
         tituloCategoria = formatearNombreCategoria(categoriaEncontrada.categoria)
         const productosCategoria = categoriaEncontrada.productos
-        res.render('categories', {categoria: tituloCategoria, productos: productosCategoria})
+        res.render('categories', {categoria: tituloCategoria, categoriaEncontrada, productos: productosCategoria})
     }
 }
 

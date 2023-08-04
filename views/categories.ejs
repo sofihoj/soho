@@ -18,15 +18,20 @@
         </div>
         <div class="productos">
             <% productos.forEach(producto => { %>
-                <div class="card-producto">
-                    <div class="photo">
-                        <img src="/img/<%= categoria %>/<%= producto.imagen %>" alt="Tapiz <%= producto.nombre %>">
+                <a href="/products/<%= categoriaEncontrada.categoria %>/<%= producto.nombre.toLowerCase() %>">
+                    <div class="card-producto">
+                        <div class="photo">
+                            <img src="/img/<%= categoriaEncontrada.categoria %>/<%= producto.imagen %>" alt="<%= producto.nombre %>">
+                        </div>
+                        <div class="info-producto">
+                            <p class="nombre-producto">
+                                <%= producto.nombre.toUpperCase() %>
+                            </p>
+                            <p class="precio-producto">$<%= producto.precio %>
+                            </p>
+                        </div>
                     </div>
-                  <div class="info-producto">
-                    <p class="nombre-producto"><%= producto.nombre %></p>
-                    <p class="precio-producto">$<%= producto.precio %></p>
-                  </div>
-                </div>
+                </a>
               <% }); %>
         </div>
     </main>
