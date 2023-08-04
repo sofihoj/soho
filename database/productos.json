@@ -47,21 +47,21 @@
                 "nombre": "Goldina",
                 "precio": "5000",
                 "descripcion": "Diámetro: 30cm",
-                "imagen": ""
+                "imagen": "goldina.jpg"
             },
             {
                 "id": 2,
                 "nombre": "Fidela",
                 "precio": "5000",
                 "descripcion": "Diámetro: 30cm",
-                "imagen": ""
+                "imagen": "fidela.jpeg"
             },
             {
                 "id": 3,
                 "nombre": "Silvia",
                 "precio": "5000",
                 "descripcion": "Diámetro: 30cm",
-                "imagen": ""
+                "imagen": "silvia.jpeg"
             }
         ]
     },
@@ -125,7 +125,7 @@
                 "nombre": "Posavaso",
                 "precio": "600",
                 "descripcion": "16 cm",
-                "imagen": ""
+                "imagen": "posavasos.jpeg"
             },
             {
                 "id": 2,
