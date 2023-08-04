@@ -47,51 +47,18 @@
             </div>
         </aside>
         <div class="main-header">
-            <p>Categoría</p>
+            <p><%= categoria %></p>
         </div>
         <div class="productos">
-            <div class="card-producto">
-                <img src="/img/tapices/gal.jpeg" alt="">
-                <div class="info-producto">
-                    <p class="nombre-producto">Gal</p>
-                    <p class="precio-producto">$17.000</p>
+            <% productos.forEach(producto => { %>
+                <div class="card-producto">
+                  <img src="/img/<%= categoria %>/<%= producto.imagen %>" alt="Tapiz <%= producto.nombre %>">
+                  <div class="info-producto">
+                    <p class="nombre-producto"><%= producto.nombre %></p>
+                    <p class="precio-producto">$<%= producto.precio %></p>
+                  </div>
                 </div>
-            </div>
-            <div class="card-producto">
-                <img src="/img/tapices/gal.jpeg" alt="">
-                <div class="info-producto">
-                    <p class="nombre-producto">Gal</p>
-                    <p class="precio-producto">$17.000</p>
-                </div>
-            </div>
-            <div class="card-producto">
-                <img src="/img/tapices/gal.jpeg" alt="">
-                <div class="info-producto">
-                    <p class="nombre-producto">Gal</p>
-                    <p class="precio-producto">$17.000</p>
-                </div>
-            </div>
-            <div class="card-producto">
-                <img src="/img/tapices/gal.jpeg" alt="">
-                <div class="info-producto">
-                    <p class="nombre-producto">Gal</p>
-                    <p class="precio-producto">$17.000</p>
-                </div>
-            </div>
-            <div class="card-producto">
-                <img src="/img/tapices/gal.jpeg" alt="">
-                <div class="info-producto">
-                    <p class="nombre-producto">Gal</p>
-                    <p class="precio-producto">$17.000</p>
-                </div>
-            </div>
-            <div class="card-producto">
-                <img src="/img/tapices/gal.jpeg" alt="">
-                <div class="info-producto">
-                    <p class="nombre-producto">Gal</p>
-                    <p class="precio-producto">$17.000</p>
-                </div>
-            </div>
+              <% }); %>
         </div>
     </main>
     <%- include('./partials/footer.ejs')%>

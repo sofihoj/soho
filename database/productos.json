@@ -1,0 +1,153 @@
+[
+    {
+        "categoria": "tapices",
+        "productos": [
+            {
+                "id": 1,
+                "nombre": "Amalia",
+                "precio": "18000",
+                "descripcion": "Ancho: 130cm - Alto 70cm",
+                "imagen": "amalia.jpg"
+            },
+            {
+                "id": 2,
+                "nombre": "Eloisa",
+                "precio": "9500",
+                "descripcion": "Ancho: 130cm - Alto 70cm",
+                "imagen": "eloisa.jpg"
+            },
+            {
+                "id": 3,
+                "nombre": "Gal",
+                "precio": "18000",
+                "descripcion": "Ancho: 130cm - Alto 70cm",
+                "imagen": "gal.jpeg"
+            },
+            {
+                "id": 4,
+                "nombre": "Ariel",
+                "precio": "18000",
+                "descripcion": "Ancho: 130cm - Alto 70cm",
+                "imagen": "ariel.jpeg"
+            },
+            {
+                "id": 5,
+                "nombre": "Candela",
+                "precio": "18000",
+                "descripcion": "Ancho: 130cm - Alto 70cm",
+                "imagen": "candela.jpeg"
+            }
+        ]
+    },
+    {
+        "categoria": "espejos",
+        "productos": [
+            {
+                "id": 1,
+                "nombre": "Goldina",
+                "precio": "5000",
+                "descripcion": "Diámetro: 30cm",
+                "imagen": ""
+            },
+            {
+                "id": 2,
+                "nombre": "Fidela",
+                "precio": "5000",
+                "descripcion": "Diámetro: 30cm",
+                "imagen": ""
+            },
+            {
+                "id": 3,
+                "nombre": "Silvia",
+                "precio": "5000",
+                "descripcion": "Diámetro: 30cm",
+                "imagen": ""
+            }
+        ]
+    },
+    {
+        "categoria": "cuelgaMacetas",
+        "productos": [
+            {
+                "id": 1,
+                "nombre": "Clásico",
+                "precio": "2500",
+                "descripcion": "",
+                "imagen": ""
+            },
+            {
+                "id": 2,
+                "nombre": "Flecos",
+                "precio": "2500",
+                "descripcion": "",
+                "imagen": ""
+            },
+            {
+                "id": 3,
+                "nombre": "Nido",
+                "precio": "2500",
+                "descripcion": "",
+                "imagen": ""
+            }
+        ]
+    },
+    {
+        "categoria": "sujetaCortinas",
+        "productos": [
+            {
+                "id": 1,
+                "nombre": "Borla",
+                "precio": "1000",
+                "descripcion": "",
+                "imagen": ""
+            },
+            {
+                "id": 2,
+                "nombre": "Doble hoja",
+                "precio": "1100",
+                "descripcion": "",
+                "imagen": ""
+            },
+            {
+                "id": 3,
+                "nombre": "Hoja",
+                "precio": "1500",
+                "descripcion": "",
+                "imagen": ""
+            }
+        ]
+    },
+    {
+        "categoria": "varios",
+        "productos": [
+            {
+                "id": 1,
+                "nombre": "Posavaso",
+                "precio": "600",
+                "descripcion": "16 cm",
+                "imagen": ""
+            },
+            {
+                "id": 2,
+                "nombre": "Individual",
+                "precio": "4000",
+                "descripcion": "35 cm",
+                "imagen": ""
+            },
+            {
+                "id": 3,
+                "nombre": "Llavero",
+                "precio": "600",
+                "descripcion": "10 cm",
+                "imagen": ""
+            },
+            {
+                "id": 4,
+                "nombre": "Lámpara",
+                "precio": "7500",
+                "descripcion": "225 cm",
+                "imagen": ""
+            }
+        ]
+    }
+]
