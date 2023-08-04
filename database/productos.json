@@ -80,7 +80,7 @@
                 "nombre": "flecos",
                 "precio": "2500",
                 "descripcion": "",
-                "imagen": ""
+                "imagen": "flecos.jpeg"
             },
             {
                 "id": 3,
@@ -124,14 +124,14 @@
                 "id": 1,
                 "nombre": "posavaso",
                 "precio": "600",
-                "descripcion": "16 cm",
+                "descripcion": "Diámetro: 16 cm",
                 "imagen": "posavasos.jpeg"
             },
             {
                 "id": 2,
                 "nombre": "individual",
                 "precio": "4000",
-                "descripcion": "35 cm",
+                "descripcion": "Diámetro: 35 cm",
                 "imagen": "individual.jpeg"
             },
             {
@@ -140,13 +140,6 @@
                 "precio": "600",
                 "descripcion": "10 cm",
                 "imagen": "llavero.jpg"
-            },
-            {
-                "id": 4,
-                "nombre": "lampara",
-                "precio": "7500",
-                "descripcion": "225 cm",
-                "imagen": ""
             }
         ]
     }
