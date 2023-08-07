@@ -50,6 +50,10 @@ tr {
     padding: 10px 0;
 }
 
+tbody tr {
+    border-bottom:#EBEBEB solid 1px;
+}
+
 tr th:nth-child(2),
 tr td:nth-child(2) {
     margin-right: 200px;

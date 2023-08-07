@@ -67,13 +67,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Categoría</td>
-                        <td>Producto</td>
-                        <td><a href=""><i class="fa-solid fa-eye"></i></a></td>
-                        <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
-                        <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
-                    </tr>
+                    <% productos.forEach(categoria => { %>
+                        <% const categoriaFormateada = formatearNombreCategoria(categoria.categoria); %>
+                        <% categoria.productos.forEach(producto => { %>
+                          <tr>
+                            <td><%= categoriaFormateada  %></td>
+                            <td><%= formatearNombreCategoria(producto.nombre) %></td>
+                            <td><a href="/products/<%= categoria.categoria.toLowerCase() %>/<%= producto.nombre.toLowerCase() %>"><i class="fa-solid fa-eye"></i></a></td>
+                            <td><a href="/administrar/<%= categoria.categoria.toLowerCase() %>/<%= producto.nombre.toLowerCase() %>/edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="/administrar/<%= categoria.categoria.toLowerCase() %>/<%= producto.nombre.toLowerCase() %>/delete"><i class="fa-solid fa-trash"></i></a></td>
+                          </tr>
+                        <% }); %>
+                      <% }); %>
                 </tbody>
             </table>
         </div>
