@@ -56,7 +56,7 @@ tbody tr {
 
 tr th:nth-child(2),
 tr td:nth-child(2) {
-    margin-right: 200px;
+    margin-right: 150px;
 }
 
 a {
@@ -180,6 +180,24 @@ form {
     display: flex;
 }
 
+table{
+    table-layout: fixed;
+    width: 96.5vw;
+}
+
+th, td {
+    width: 150px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+th:nth-child(1),
+th:nth-child(2),
+td:nth-child(1),
+td:nth-child(2) {
+    width: 250px;
+}
+
 @media (max-width: 480px) {
     form {
         width: 90%;
@@ -196,5 +214,42 @@ form {
 
     .form button {
         padding: 15px 15px;
+    }
+
+    thead,
+    tbody {
+        font-size: 13px;
+        font-weight: normal;
+    }
+
+    table {
+        width: 90vw;
+        table-layout: fixed;
+    }
+}
+
+@media (max-width: 768px) {
+    table {
+        width: 90vw;
+        table-layout: fixed;
+    }
+
+    th, td {
+        width: 80px;
+        word-wrap: break-word;
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    th:nth-child(1),
+    th:nth-child(2),
+    td:nth-child(1),
+    td:nth-child(2) {
+        width: 150px;
+    }
+
+    tr th:nth-child(2),
+    tr td:nth-child(2) {
+        margin-right: 20px;
     }
 }
