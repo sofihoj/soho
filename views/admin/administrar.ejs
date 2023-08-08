@@ -34,17 +34,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% productos.forEach(categoria => { %>
-                        <% const categoriaFormateada = formatearNombreCategoria(categoria.categoria); %>
-                        <% categoria.productos.forEach(producto => { %>
+                    <% productos2.forEach(producto => { %>
                           <tr>
-                            <td><%= categoriaFormateada  %></td>
-                            <td><%= formatearNombreCategoria(producto.nombre) %></td>
-                            <td><a href="/products/<%= categoria.categoria.toLowerCase() %>/<%= producto.nombre.toLowerCase() %>"><i class="fa-solid fa-eye"></i></a></td>
-                            <td><a href="/administrar/<%= categoria.categoria.toLowerCase() %>/<%= producto.nombre.toLowerCase() %>/edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><%= formatear(producto.categoria)  %></td>
+                            <td><%= formatear(producto.nombre) %></td>
+                            <td><a href="/products/<%= producto.categoria %>/<%= producto.nombre %>"><i class="fa-solid fa-eye"></i></a></td>
+                            <td><a href="/administrar/edit/<%= producto.nombre %>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <td><a href="/administrar/delete/<%= producto.nombre %>"><i class="fa-solid fa-trash"></i></a></td>
                           </tr>
-                        <% }); %>
                       <% }); %>
                 </tbody>
             </table>

@@ -42,6 +42,12 @@
         "descripcion": "alto: 30cm",
         "precio": "3000",
         "imagen": ""
+      },
+      {
+        "nombre": "testt",
+        "descripcion": "testt",
+        "precio": "2",
+        "imagen": ""
       }
     ]
   },

@@ -14,12 +14,12 @@
         <main>
             <%- include('./partials/sidebar.ejs')%>
             <section class="main-header">
-                <p><%= tituloCategoria %></p>
+                <p><%= formatear(producto.categoria) %></p>
             </section>
             <div class="cont">
                 <section class="photos">
                     <div class="caja">
-                        <img src="/img/<%= categoriaEncontrada.categoria %>/<%= producto.imagen %>" alt="">
+                        <img src="/img/<%= producto.categoria %>/<%= producto.imagen %>" alt="">
                     </div>
                 </section>
                 <section class="description">

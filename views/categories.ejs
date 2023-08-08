@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOHO macramé | <%= categoria %></title>
+    <title>SOHO macramé | <%= producto.categoria %></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
@@ -14,14 +14,14 @@
     <main>
         <%- include('./partials/sidebar.ejs')%>
         <div class="main-header">
-            <p><%= categoria %></p>
+            <p><%= formatear(categoriaSeleccionada) %></p>
         </div>
         <div class="productos">
-            <% productos.forEach(producto => { %>
-                <a href="/products/<%= categoriaEncontrada.categoria %>/<%= producto.nombre.toLowerCase() %>">
+            <% producto.forEach(producto => { %>
+                <a href="/products/<%= producto.categoria %>/<%= producto.nombre.toLowerCase() %>">
                     <div class="card-producto">
                         <div class="photo">
-                            <img src="/img/<%= categoriaEncontrada.categoria %>/<%= producto.imagen %>" alt="<%= producto.nombre %>">
+                            <img src="/img/<%= producto.categoria %>/<%= producto.imagen %>" alt="<%= producto.nombre %>">
                         </div>
                         <div class="info-producto">
                             <p class="nombre-producto">

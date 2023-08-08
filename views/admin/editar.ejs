@@ -50,20 +50,20 @@
             <p>Editar producto</p>
         </div>
         <div class="form">
-            <form action="/administrar/create" method="POST">
+            <form action="/administrar/edit/<%= producto.nombre %>" method="POST">
                 <div class="inputs">
-                    <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" required>
-                    <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" required>
-                    <input type="text" id="precio" name="precio" placeholder="Precio" required>
+                    <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" value="<%= producto.nombre%>"required>
+                    <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" value="<%= producto.descripcion%>" required>
+                    <input type="text" id="precio" name="precio" placeholder="Precio" value="<%= producto.precio%>" required>
                     <div class="input-box">
                         <select name="categoria">
-                            <option disabled selected>- Categoría -</option>
-                            <option value="tapices">Tapices</option>
-                            <option value="espejos">Espejos</option>
-                            <option value="cuelgaMacetas">Cuelga macetas</option>
-                            <option value="sujetaCortinas">Sujeta cortinas</option>
-                            <option value="varios">Varios</option>
-                            <option value="cursos">Cursos</option>
+                            <option disabled>- Categoría -</option>
+                            <option value="tapices" <%=categoriaEncontrada ==='tapices' ? 'selected' : '' %>>Tapices</option>
+                            <option value="espejos" <%=categoriaEncontrada ==='espejos' ? 'selected' : '' %>>Espejos</option>
+                            <option value="cuelgaMacetas" <%=categoriaEncontrada ==='cuelgaMacetas' ? 'selected' : '' %>>Cuelga macetas</option>
+                            <option value="sujetaCortinas" <%=categoriaEncontrada ==='sujetaCortinas' ? 'selected' : '' %>>Sujeta cortinas</option>
+                            <option value="varios" <%=categoriaEncontrada ==='varios' ? 'selected' : '' %>>Varios</option>
+                            <option value="cursos" <%=categoriaEncontrada ==='cursos' ? 'selected' : '' %>>Cursos</option>
                         </select>
                     </div>
                     <div class="input-box">

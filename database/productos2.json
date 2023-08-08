@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "nombre": "amalia",
+    "precio": "18000",
+    "descripcion": "Ancho: 130cm - Alto 70cm",
+    "imagen": "amalia.jpg",
+    "categoria": "tapices"
+  },
+  {
+    "id": 2,
+    "nombre": "eloisa",
+    "precio": "9500",
+    "descripcion": "Ancho: 130cm - Alto 70cm",
+    "imagen": "eloisa.jpg",
+    "categoria": "tapices"
+  },
+  {
+    "id": 3,
+    "nombre": "gal",
+    "precio": "18000",
+    "descripcion": "Ancho: 130cm - Alto 70cm",
+    "imagen": "gal.jpeg",
+    "categoria": "tapices"
+  },
+  {
+    "id": 4,
+    "nombre": "ariel",
+    "precio": "5500",
+    "descripcion": "Ancho: 130cm - Alto 70cm",
+    "imagen": "ariel.jpeg",
+    "categoria": "tapices"
+  },
+  {
+    "id": 5,
+    "nombre": "candela",
+    "precio": "7500",
+    "descripcion": "Ancho: 130cm - Alto 70cm",
+    "imagen": "candela.jpeg",
+    "categoria": "tapices"
+  },
+  {
+    "id": 6,
+    "nombre": "goldina",
+    "precio": "5000",
+    "descripcion": "Diámetro: 30cm",
+    "imagen": "goldina.jpg",
+    "categoria": "espejos"
+  },
+  {
+    "id": 7,
+    "nombre": "fidela",
+    "precio": "5000",
+    "descripcion": "Diámetro: 30cm",
+    "imagen": "fidela.jpeg",
+    "categoria": "espejos"
+  },
+  {
+    "id": 8,
+    "nombre": "silvia",
+    "precio": "5000",
+    "descripcion": "Diámetro: 30cm",
+    "imagen": "silvia.jpeg",
+    "categoria": "espejos"
+  },
+  {
+    "id": 9,
+    "nombre": "clasico",
+    "precio": "2500",
+    "descripcion": "",
+    "imagen": "cuelga-maceta.jpeg",
+    "categoria": "cuelgaMacetas"
+  },
+  {
+    "id": 10,
+    "nombre": "flecos",
+    "precio": "2500",
+    "descripcion": "",
+    "imagen": "flecos.jpeg",
+    "categoria": "cuelgaMacetas"
+  },
+  {
+    "id": 11,
+    "nombre": "nido",
+    "precio": "2500",
+    "descripcion": "",
+    "imagen": "",
+    "categoria": "cuelgaMacetas"
+  },
+  {
+    "id": 12,
+    "nombre": "borla",
+    "precio": "1000",
+    "descripcion": "",
+    "imagen": "borla.jpeg",
+    "categoria": "sujetaCortinas"
+  },
+  {
+    "id": 13,
+    "nombre": "doble hoja",
+    "precio": "1100",
+    "descripcion": "",
+    "imagen": "hoja-doble.jpeg",
+    "categoria": "sujetaCortinas"
+  },
+  {
+    "id": 14,
+    "nombre": "hoja",
+    "precio": "1500",
+    "descripcion": "",
+    "imagen": "hoja-grande.jpeg",
+    "categoria": "sujetaCortinas"
+  },
+  {
+    "id": 15,
+    "nombre": "posavaso",
+    "precio": "600",
+    "descripcion": "Diámetro: 16 cm",
+    "imagen": "posavasos.jpeg",
+    "categoria": "varios"
+  },
+  {
+    "id": 16,
+    "nombre": "individual",
+    "precio": "4000",
+    "descripcion": "Diámetro: 35 cm",
+    "imagen": "individual.jpeg",
+    "categoria": "varios"
+  },
+  {
+    "id": 17,
+    "nombre": "llavero",
+    "precio": "600",
+    "descripcion": "10 cm",
+    "imagen": "llavero.jpg",
+    "categoria": "varios"
+  },
+  {
+    "id": 18,
+    "nombre": "test",
+    "descripcion": "test",
+    "precio": "222",
+    "categoria": "tapices",
+    "imagen": ""
+  }
+]
