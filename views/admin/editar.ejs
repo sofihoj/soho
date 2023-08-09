@@ -50,7 +50,7 @@
             <p>Editar producto</p>
         </div>
         <div class="form">
-            <form action="/administrar/edit/<%= producto.nombre%>?_method=PUT" method="POST">
+            <form action="/administrar/edit/<%= producto.nombre%>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="inputs">
                     <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" value="<%= producto.nombre%>"required>
                     <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" value="<%= producto.descripcion%>" required>
@@ -67,6 +67,7 @@
                         </select>
                     </div>
                     <div class="input-box">
+                        <input type="hidden" name="oldImagen" value="<%= producto.imagen %>">
                         <input type="file" id="imagen" name="imagen" placeholder="Imagen del Producto">
                     </div>
                 </div>

@@ -12,7 +12,7 @@ const controller = {
         res.render('admin/crear')
     },
     save: (req, res) => {
-        let { nombre, descripcion, precio, categoria, imagen } = req.body;
+        let { nombre, descripcion, precio, categoria } = req.body;
         let id = productos2.length + 1;
         let nuevoProducto = {
             id: id,
@@ -20,7 +20,8 @@ const controller = {
             descripcion: descripcion,
             precio: precio,
             categoria: transformToCamelCase(categoria),
-            imagen: imagen,
+            imagen: req.file.filename,
+            //el nombre de la imagen lo obtengo de multer
         };
 
         productos2.push(nuevoProducto);
@@ -47,11 +48,16 @@ const controller = {
     update: (req, res) => {
         const nombreProducto = req.params.nombre;
         let actualizarProducto = productos2.map(producto => {
-            if(producto.nombre === nombreProducto){
-                return {
+            if (producto.nombre === nombreProducto) {
+                if (req.file) {
+                    producto.imagen = req.file.filename;
+                } else {
+                    producto.imagen = req.body.oldImagen;
+                }
+                producto = {
                     ...producto,
                     ...req.body
-                  };
+                };
             }
             return producto;
         });
