@@ -41,33 +41,33 @@ const controller = {
     },
     edit: (req, res) => {
         const nombreProducto = req.params.nombre;
-        const categoriaEncontrada = productos.find(categoria => categoria.productos.some(producto => producto.nombre === nombreProducto));
-
-        if (categoriaEncontrada) {
-            const producto = categoriaEncontrada.productos.find(prod => prod.nombre === nombreProducto);
-
-            if (producto) {
-                res.render('admin/editar', { producto, categoriaEncontrada });
-            } else {
-                res.render('error');
-            }
-        } else {
-            res.render('error');
-        }
+        const productoEditar = productos2.find(producto => producto.nombre === nombreProducto)
+        res.render('admin/editar', { producto: productoEditar, transformToCamelCase });
     },
     update: (req, res) => {
-
+        const nombreProducto = req.params.nombre;
+        let actualizarProducto = productos2.map(producto => {
+            if(producto.nombre === nombreProducto){
+                return {
+                    ...producto,
+                    ...req.body
+                  };
+            }
+            return producto;
+        });
+        fs.writeFileSync(path.resolve(__dirname, '../database/productos2.json'), JSON.stringify(actualizarProducto, null, 2));
+        res.redirect('/administrar');
     }
 }
 
 function formatear(categoria) {
     return categoria
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .replace(/\b\w/g, c => c.toUpperCase());
-  }
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/\b\w/g, c => c.toUpperCase());
+}
 
-  function transformToCamelCase(texto) {
+function transformToCamelCase(texto) {
     return texto.replace(/\s+(\w)/g, (_, match) => match.toUpperCase());
-  }
+}
 
 module.exports = controller

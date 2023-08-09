@@ -134,13 +134,5 @@
     "descripcion": "10 cm",
     "imagen": "llavero.jpg",
     "categoria": "varios"
-  },
-  {
-    "id": 18,
-    "nombre": "test",
-    "descripcion": "test",
-    "precio": "222",
-    "categoria": "tapices",
-    "imagen": ""
   }
 ]

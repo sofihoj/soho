@@ -50,7 +50,7 @@
             <p>Editar producto</p>
         </div>
         <div class="form">
-            <form action="/administrar/edit/<%= producto.nombre %>" method="POST">
+            <form action="/administrar/edit/<%= producto.nombre%>?_method=PUT" method="POST">
                 <div class="inputs">
                     <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" value="<%= producto.nombre%>"required>
                     <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" value="<%= producto.descripcion%>" required>
@@ -58,16 +58,16 @@
                     <div class="input-box">
                         <select name="categoria">
                             <option disabled>- Categoría -</option>
-                            <option value="tapices" <%=categoriaEncontrada ==='tapices' ? 'selected' : '' %>>Tapices</option>
-                            <option value="espejos" <%=categoriaEncontrada ==='espejos' ? 'selected' : '' %>>Espejos</option>
-                            <option value="cuelgaMacetas" <%=categoriaEncontrada ==='cuelgaMacetas' ? 'selected' : '' %>>Cuelga macetas</option>
-                            <option value="sujetaCortinas" <%=categoriaEncontrada ==='sujetaCortinas' ? 'selected' : '' %>>Sujeta cortinas</option>
-                            <option value="varios" <%=categoriaEncontrada ==='varios' ? 'selected' : '' %>>Varios</option>
-                            <option value="cursos" <%=categoriaEncontrada ==='cursos' ? 'selected' : '' %>>Cursos</option>
+                            <option value="tapices" <%= transformToCamelCase(producto.categoria) ==='tapices' ? 'selected' : '' %>>Tapices</option>
+                            <option value="espejos" <%=transformToCamelCase(producto.categoria) ==='espejos' ? 'selected' : '' %>>Espejos</option>
+                            <option value="cuelgaMacetas" <%=transformToCamelCase(producto.categoria) ==='cuelgaMacetas' ? 'selected' : '' %>>Cuelga macetas</option>
+                            <option value="sujetaCortinas" <%=transformToCamelCase(producto.categoria) ==='sujetaCortinas' ? 'selected' : '' %>>Sujeta cortinas</option>
+                            <option value="varios" <%=transformToCamelCase(producto.categoria) ==='varios' ? 'selected' : '' %>>Varios</option>
+                            <option value="cursos" <%=transformToCamelCase(producto.categoria) ==='cursos' ? 'selected' : '' %>>Cursos</option>
                         </select>
                     </div>
                     <div class="input-box">
-                        <input type="file" id="imagen" name="imagen" placeholder="Imagen del Producto" required>
+                        <input type="file" id="imagen" name="imagen" placeholder="Imagen del Producto">
                     </div>
                 </div>
                 <div class="buttons">
