@@ -5,16 +5,29 @@
     text-align: center;
 }
 
-.inputs input {
+input {
     border: none;
     border-radius: 3px;
     height: 30px;
     width: 100%;
-    margin: 10px 15px 15px 0;
+    margin: 20px 15px 5px 0;
+    color: black;
 }
 
 .input-box {
     width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-error {
+    text-align: end;
+    font-size: 13px;
+    color: red;
+}
+
+.input-error {
+    border: red 1px solid;
 }
 
 form {

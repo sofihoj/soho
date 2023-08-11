@@ -53,8 +53,18 @@ form {
     border: none;
     border-radius: 3px;
     height: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     min-width: 150px;
+}
+
+.text-error {
+    text-align: end;
+    font-size: 13px;
+    color: red;
+}
+
+.form-group .input-error {
+    border: red 1px solid;
 }
 
 .form button {

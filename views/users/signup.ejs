@@ -17,25 +17,71 @@
                 <p>Crea tu cuenta</p>
             </div>
             <div class="form">
-                <form>
+                <form action="/users/signup" method="POST">
                     <div class="inputs">
                         <div class="input-box">
-                            <input type="text" name="Name" id="formName" placeholder="Nombre" required>
+                            <input type="text" name="name" id="formName" placeholder="<%= locals.oldData ? oldData.name : "Nombre" %>" class=<%= locals.errors && errors.name ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.name : null %>">
+                            <% if (locals.errors && errors.name) { %>
+                                <div class="text-error">
+                                    <%= errors.name.msg %>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="input-box">
-                            <input type="text" name="Last name" id="formLastName" placeholder="Apellido" required>
+                            <input type="text" name="lastName" id="formLastName" placeholder="<%= locals.oldData ? oldData.lastName : "Apellido" %>" class=<%= locals.errors && errors.lastName ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.lastName : null %>">
+                            <% if (locals.errors && errors.lastName) { %>
+                                <div class="text-error">
+                                    <%= errors.lastName.msg %>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="input-box">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
+                            <input type="email" id="email" name="email" placeholder="<%= locals.oldData ? oldData.email : "Email" %>" class=<%= locals.errors && errors.email ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.email : null %>">
+                            <% if (locals.errors && errors.email) { %>
+                                <div class="text-error">
+                                    <%= errors.email.msg %>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="input-box">
-                            <input type="text" name="Phone number" id="formNumber" placeholder="Nro. de teléfono" required>
+                            <input type="text" name="phoneNumber" id="formNumber" placeholder="<%= locals.oldData ? oldData.phoneNumber : "Nro. de teléfono" %>" class=<%= locals.errors && errors.phoneNumber ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.phoneNumber : null %>">
+                            <% if (locals.errors && errors.phoneNumber) { %>
+                                <div class="text-error">
+                                    <%= errors.phoneNumber.msg %>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="input-box">
-                            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                            <input type="text" name="city" id="city" placeholder="<%= locals.oldData ? oldData.city : "Ciudad" %>" class=<%= locals.errors && errors.city ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.city : null %>">
+                            <% if (locals.errors && errors.city) { %>
+                                <div class="text-error">
+                                    <%= errors.city.msg %>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="input-box">
-                            <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repetir contraseña" required>
+                            <input type="text" name="address" id="address" placeholder="<%= locals.oldData ? oldData.address : "Dirección" %>" class=<%= locals.errors && errors.address ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.address : null %>">
+                            <% if (locals.errors && errors.address) { %>
+                                <div class="text-error">
+                                    <%= errors.address.msg %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" id="password" name="password" placeholder="<%= locals.oldData ? '' : "Contraseña" %>" class=<%= locals.errors && errors.password ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.password : null %>">
+                            <% if (locals.errors && errors.password) { %>
+                                <div class="text-error">
+                                    <%= errors.password.msg %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="<%= locals.oldData ? '' : "Repetir contraseña" %>" class=<%= locals.errors && errors.passwordRepeat ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.passwordRepeat : null %>">
+                            <% if (locals.errors && errors.passwordRepeat) { %>
+                                <div class="text-error">
+                                    <%= errors.passwordRepeat.msg %>
+                                </div>
+                            <% } %>
                         </div>
                     </div>
                     <button type="submit">Crear tu cuenta</button>
