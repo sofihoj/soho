@@ -27,6 +27,12 @@ const usersController = {
         } else if (loginValidation.isEmpty()) {
 
         }
+    },
+    profile: (req, res) => {
+        res.render('users/profile');
+    },
+    edit: (req, res) => {
+        res.render('users/editProfile');
     }
 }
 

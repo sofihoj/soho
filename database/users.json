@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "name": "nombre",
+        "lastName": "apellido",
+        "email": "email@email.com",
+        "phoneNumber": "5555555",
+        "city": "rosario",
+        "address": "calle 132",
+        "password": "abc123",
+        "category": "admin"
+    },
+    {
+        "id": 1,
+        "name": "dexter",
+        "lastName": "morgan",
+        "email": "dexter@email.com",
+        "phoneNumber": "4444444",
+        "city": "rosario",
+        "address": "calle 465",
+        "password": "def456",
+        "category": "buyer"
+    }
+
+]

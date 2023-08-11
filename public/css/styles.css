@@ -477,6 +477,21 @@ aside .top-sidebar {
     margin-bottom: 25px;
 }
 
+.main-header {
+    background-color: #967D71;
+    color: #ebebeb;
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-header p {
+    margin: 0;
+    padding: 6px 0;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
 @media (max-width: 480px) {
     .bottom-menu {
         flex-direction: column;
