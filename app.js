@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
+const methodOverride = require('method-override');
+const session = require('express-session');
+
 const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const usersRoutes = require('./routes/usersRoutes');
-const methodOverride = require('method-override');
-const session = require('express-session');
 
 const app = express();
 
@@ -14,9 +15,14 @@ const PORT = parseInt(process.env.PORT);
 app.set("view engine", "ejs")
 
 app.use(express.static(path.resolve(__dirname, './public')));
+app.use(session({
+    secret:"It's a secret",
+    resave: false,
+    saveUninitialized: false,
+}));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-app.use(session({secret:'Soho secret'}));
+
 
 app.use('/', mainRoutes);
 app.use('/administrar', adminRoutes);

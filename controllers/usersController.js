@@ -1,9 +1,10 @@
+const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator')
 
+
+const User = require('../models/User');
+
 const usersController = {
-    login: (req, res) => {
-        res.render('users/login');
-    },
     signup: (req, res) => {
         res.render('users/signup')
     },
@@ -16,17 +17,66 @@ const usersController = {
                 oldData: req.body
             })
         }
-    },
-    processLogin: (req, res) => {
-        const loginValidation = validationResult(req);
-        if (loginValidation.errors.length > 0) {
-            return res.render('users/login', {
-                errors: loginValidation.mapped(), //mapped() convierte el array errors de registerValidation en un objeto literal donde cada uno tiene las propiedades de origen
+        let existingUser = User.findByField('email', req.body.email);
+        if (existingUser) {
+            return res.render('users/signup', {
+                errors: {
+                    email: {
+                        msg: 'Este email ya está registrado'
+                    }
+                },
                 oldData: req.body
             })
-        } else if (loginValidation.isEmpty()) {
-
         }
+        let userToCreate = {
+            ...req.body,
+            password: bcrypt.hashSync(req.body.password, 10)
+        }
+
+        let userCreated = User.create(userToCreate);
+
+		return res.redirect('/users/login');
+    },
+    login: (req, res) => {
+        res.render('users/login');
+    },
+    processLogin: (req, res) => {
+        // const loginValidation = validationResult(req);
+        // if (loginValidation.errors.length > 0) {
+        //     return res.render('users/login', {
+        //         errors: loginValidation.mapped(), //mapped() convierte el array errors de registerValidation en un objeto literal donde cada uno tiene las propiedades de origen
+        //         oldData: req.body
+        //     })
+        // }
+        let userToLogin = User.findByField('email', req.body.email);
+		if(userToLogin) {
+			let isOkThePassword = bcrypt.compareSync(req.body.password, userToLogin.password);
+			if (isOkThePassword) {
+				delete userToLogin.password;
+				req.session.userLogged = userToLogin;
+
+				if(req.body.remember_user) {
+					res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
+				}
+
+				return res.redirect('/users/profile');
+			}
+			return res.render('users/login', {
+				errors: {
+					password: {
+						msg: 'Contraseña incorrecta'
+					}
+				}
+			});
+		}
+
+		return res.render('users/login', {
+			errors: {
+				email: {
+					msg: 'Usuario no registrado'
+				}
+			}
+		});
     },
     profile: (req, res) => {
         res.render('users/profile');

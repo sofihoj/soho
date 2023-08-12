@@ -7,7 +7,7 @@ const validations = require('../middlewares/validations')
 router.get('/login', usersController.login)
 router.get('/signup', usersController.signup)
 router.post('/signup', validations, usersController.processRegister)
-router.post('/login', validations, usersController.processLogin)
+router.post('/login', usersController.processLogin)
 router.get('/profile', usersController.profile)
 router.get('/profile/info/', usersController.edit)
 
