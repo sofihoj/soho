@@ -6,6 +6,7 @@ const session = require('express-session');
 const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
 const app = express();
 
@@ -15,11 +16,13 @@ const PORT = parseInt(process.env.PORT);
 app.set("view engine", "ejs")
 
 app.use(express.static(path.resolve(__dirname, './public')));
+
 app.use(session({
     secret:"It's a secret",
     resave: false,
     saveUninitialized: false,
 }));
+app.use(userLoggedMiddleware);
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 

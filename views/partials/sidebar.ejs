@@ -28,7 +28,11 @@
     <div class="bottom-sidebar">
         <ul>
             <li><a href="/productCart"><i class="fas fa-light fa-cart-shopping"></i>Carrito</a></li>
-            <li><a href="/users/login"><i class="fas fa-regular fa-arrow-right-to-bracket"></i>Login</a></li>
+            <% if (locals.isLogged) { %>
+                <li><a href="/users/profile"><i class="fa-solid fa-user"></i>Mi perfil</a></li>
+            <% } else { %>
+                <li><a href="/users/login"><i class="fas fa-regular fa-arrow-right-to-bracket"></i>Login</a></li>
+            <% } %>
         </ul>
     </div>
 </aside>

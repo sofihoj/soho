@@ -76,6 +76,23 @@ form {
     font-weight: bold;
 }
 
+#rememberUser {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#remember_user{
+    height: 14px;
+    min-width: 20px;
+}
+
+#rememberUser label {
+    margin-top: 0;
+    margin-left: 2px;
+}
+
 @media (max-width: 480px) {
     form {
         width: 90%;

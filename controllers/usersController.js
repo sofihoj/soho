@@ -52,8 +52,8 @@ const usersController = {
 		if(userToLogin) {
 			let isOkThePassword = bcrypt.compareSync(req.body.password, userToLogin.password);
 			if (isOkThePassword) {
-				delete userToLogin.password;
-				req.session.userLogged = userToLogin;
+				delete userToLogin.password; //para evitar que me traiga la password a la session, por seguridad
+				req.session.userLogged = userToLogin; //guardo la sesión del usuario
 
 				if(req.body.remember_user) {
 					res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
@@ -79,10 +79,16 @@ const usersController = {
 		});
     },
     profile: (req, res) => {
-        res.render('users/profile');
+        res.render('users/profile', {
+            user: req.session.userLogged
+        });
     },
     edit: (req, res) => {
         res.render('users/editProfile');
+    },
+    logout: (req, res) => {
+        req.session.destroy();
+        return res.redirect('/');
     }
 }
 

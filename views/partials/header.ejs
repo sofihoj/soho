@@ -1,6 +1,10 @@
 <header>
     <div class="top-header">
-        <p><span><a href="/users/login">Login</a></span>|<span><a href="/users/signup">Sign up</a></span></p>
+        <% if (locals.isLogged) { %>
+            <p><span>Hola <a href="/users/profile"><%= user.name %></a>!</span>|<span><a href="/users/logout">Log out</a></span></p>
+        <% } else { %>
+            <p><span><a href="/users/login">Login</a></span>|<span><a href="/users/signup">Sign up</a></span></p>
+        <% } %>
     </div>
     <div class="medium-header">
         <i class="fas fa-search"></i>

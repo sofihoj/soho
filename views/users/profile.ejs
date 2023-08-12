@@ -10,37 +10,7 @@
     <link rel="stylesheet" href="/css/profile.css">
 </head>
 <body>
-    <header>
-        <div class="top-header">
-            <p><span><a href="/users/profile">Mi perfil</a></span>|<span><a href="#">Log out</a></span></p>
-        </div>
-        <div class="medium-header">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-bars" onclick="openNav()"></i>
-            <div class="logo">
-                <a href="/index"><img src="/img/logo.jpg" alt="Logo BISNE"></a>
-            </div>
-            <a href="/productCart"><i class="fas fa-cart-shopping"></i></a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/index">Inicio</a></li>
-                <li class="dropdown"><a href="#" class="dropbtn">Categorías <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="/categories/tapices">Tapices</a>
-                        <a href="/categories/espejos">Espejos</a>
-                        <a href="/categories/cuelgaMacetas">Cuelga macetas</a>
-                        <a href="/categories/sujetaCortinas">Sujeta cortinas</a>
-                        <a href="/categories/varios">Varios</a>
-                        <a href="#">Cursos</a>
-                      </div>
-                </li>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Envíos</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('../partials/header.ejs')%>
     <main>
         <%- include('../partials/sidebar.ejs')%>
         <div class="main-header">
@@ -54,12 +24,12 @@
                     <a href="#"><p>editar</p></a>
                 </div>
                 <div class="profile-content">
-                    <p><span>Nombre |</span>Nombre</p>
-                    <p><span>Apellido |</span>Apellido</p>
-                    <p><span>Email |</span>Email</p>
-                    <p><span>Teléfono |</span>Teléfono</p>
-                    <p><span>Ciudad |</span>Ciudad</p>
-                    <p><span>Dirección |</span>Dirección</p>
+                    <p><span>Nombre |</span><%= user.name %></p>
+                    <p><span>Apellido |</span><%= user.lastName %></p>
+                    <p><span>Email |</span><%= user.email %></p>
+                    <p><span>Teléfono |</span><%= user.phoneNumber %></p>
+                    <p><span>Ciudad |</span><%= user.city %></p>
+                    <p><span>Dirección |</span><%= user.address %></p>
                     <p><span>Contraseña |</span>******</p>
                 </div>
             </section>
