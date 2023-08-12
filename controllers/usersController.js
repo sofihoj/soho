@@ -87,6 +87,7 @@ const usersController = {
         res.render('users/editProfile');
     },
     logout: (req, res) => {
+        res.clearCookie('userEmail');
         req.session.destroy();
         return res.redirect('/');
     }
