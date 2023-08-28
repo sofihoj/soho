@@ -34,6 +34,10 @@ header li {
     text-transform: uppercase;
 }
 
+.img-popular a {
+    text-decoration: none;
+}
+
 header li a {
     color: #9A6C6C;
     text-decoration: none;

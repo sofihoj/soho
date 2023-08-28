@@ -134,5 +134,13 @@
     "descripcion": "10 cm",
     "imagen": "llavero.jpg",
     "categoria": "varios"
+  },
+  {
+    "id": 18,
+    "nombre": "orly",
+    "descripcion": "ancho: 1 metro, alto: 70cm",
+    "precio": "18000",
+    "categoria": "tapices",
+    "imagen": "orly-1693257735714.jpeg"
   }
 ]
