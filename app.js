@@ -8,6 +8,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
+const restrictToAdmin = require('./middlewares/restrictAdminMiddleware')
 
 const app = express();
 
@@ -30,7 +31,7 @@ app.use(methodOverride('_method'));
 
 
 app.use('/', mainRoutes);
-app.use('/administrar', adminRoutes);
+app.use('/administrar', restrictToAdmin, adminRoutes);
 app.use('/users', usersRoutes);
 
 
