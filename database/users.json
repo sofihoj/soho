@@ -1,17 +1,6 @@
 [
  {
   "id": 1,
-  "name": "nombre",
-  "lastName": "apellido",
-  "email": "email@email.com",
-  "phoneNumber": "5555555",
-  "city": "rosario",
-  "address": "calle 132",
-  "password": "abc123",
-  "category": "admin"
- },
- {
-  "id": 2,
   "name": "dexter",
   "lastName": "morgan",
   "email": "dexter@email.com",
@@ -19,21 +8,10 @@
   "city": "rosario",
   "address": "calle 465",
   "password": "def456",
-  "category": "buyer"
+  "category": "user"
  },
  {
-  "id": 3,
-  "name": "Sofia",
-  "lastName": "Hojberg",
-  "email": "sofiahojberg@hotmail.com",
-  "phoneNumber": "3416507420",
-  "city": "Rosario",
-  "address": "Cochabamba 1050",
-  "password": "Hola123*",
-  "passwordRepeat": "Hola123*"
- },
- {
-  "id": 4,
+  "id": 2,
   "name": "Sofia",
   "lastName": "Hojberg",
   "email": "sofiahojberg@hotmail.net",
@@ -41,17 +19,19 @@
   "city": "Rosario",
   "address": "Cochabamba 1050",
   "password": "$2a$10$.j9TDHOJk04.zJXm/iOjG.CeWgRxxcAS1l0KK2dUi1BfNbN3Tx49C",
-  "passwordRepeat": "Abc123**"
+  "passwordRepeat": "Abc123**",
+  "category": "admin"
  },
  {
-  "id": 5,
-  "name": "Sofia",
-  "lastName": "Hojberg",
-  "email": "chofi003@hotmail.com",
-  "phoneNumber": "3416507420",
+  "id": 3,
+  "name": "User",
+  "lastName": "Prueba",
+  "email": "user@prueba.com",
+  "phoneNumber": "111111111",
   "city": "Rosario",
-  "address": "Cochabamba 1050",
-  "password": "$2a$10$uGI2KTGtcHvXbL7RIotG1OwLXuoGedoil.wC/JncGrpwl2fAckkAC",
-  "passwordRepeat": "Abcd123*"
+  "address": "Abc 123",
+  "password": "$2a$10$4ySiwVde5BW4KqSa9DanlOHf2bXIOxpeP7l9eIOvWhZXJzlOdWzCK",
+  "passwordRepeat": "Abc123**",
+  "category": "user"
  }
 ]

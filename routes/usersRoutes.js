@@ -11,7 +11,7 @@ router.get('/signup', guestMiddleware, usersController.signup)
 router.post('/signup', validations, usersController.processRegister)
 router.post('/login', usersController.processLogin)
 router.get('/profile', authMiddleware, usersController.profile)
-router.get('/profile/info/', usersController.edit)
+// router.get('/profile/info/', usersController.edit)
 router.get('/logout', usersController.logout)
 
 

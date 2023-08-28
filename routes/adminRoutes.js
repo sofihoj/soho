@@ -3,6 +3,7 @@ const multer = require('multer')
 const path = require('path');
 const adminController = require('../controllers/adminController');
 const router = express.Router();
+const authMiddleware = require('../middlewares/authMiddleware');
 
 function transformToCamelCase(texto) {
     return texto.replace(/\s+(\w)/g, (_, match) => match.toUpperCase());
@@ -24,8 +25,8 @@ const upload = multer({ storage })
 
 
 
-router.get('/', adminController.administrar);
-router.get('/create', adminController.create);
+router.get('/', authMiddleware, adminController.administrar);
+router.get('/create', authMiddleware, adminController.create);
 router.post('/create', upload.single('imagen'), adminController.save);
 // router.get('/detail/:id', adminController.show);
 router.get('/edit/:nombre', adminController.edit);

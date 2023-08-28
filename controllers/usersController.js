@@ -30,6 +30,7 @@ const usersController = {
         }
         let userToCreate = {
             ...req.body,
+            category: "user",
             password: bcrypt.hashSync(req.body.password, 10)
         }
 
@@ -59,7 +60,11 @@ const usersController = {
 					res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
 				}
 
-				return res.redirect('/users/profile');
+				if (userToLogin.category === 'admin') {
+                    return res.redirect('/administrar');
+                } else {
+                    return res.redirect('/users/profile');
+                }
 			}
 			return res.render('users/login', {
 				errors: {
@@ -78,14 +83,27 @@ const usersController = {
 			}
 		});
     },
+    // profile: (req, res) => {
+    //     res.render('users/profile', {
+    //         user: req.session.userLogged
+    //     });
+    // },
     profile: (req, res) => {
-        res.render('users/profile', {
-            user: req.session.userLogged
-        });
+        const userCategory = req.session.userLogged.category;
+
+        if (userCategory === 'admin') {
+            return res.redirect('/administrar');
+        } else if (userCategory === 'user') {
+            return res.render('users/profile', {
+                user: req.session.userLogged
+            });
+        } else {
+            return res.status(400).send('Categoría de usuario desconocida');
+        }
     },
-    edit: (req, res) => {
-        res.render('users/editProfile');
-    },
+    // edit: (req, res) => {
+    //     res.render('users/editProfile');
+    // },
     logout: (req, res) => {
         res.clearCookie('userEmail');
         req.session.destroy();
