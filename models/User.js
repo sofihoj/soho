@@ -29,9 +29,10 @@ const User = {
 	},
     create: function (userData) {
 		let allUsers = this.findAll();
+		const { passwordRepeat, ...userDataWithoutRepeat } = userData;
 		let newUser = {
 			id: this.generateId(),
-			...userData
+			...userDataWithoutRepeat
 		}
 		allUsers.push(newUser);
 		fs.writeFileSync(this.filePath, JSON.stringify(allUsers, null,  ' '));
