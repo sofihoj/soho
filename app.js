@@ -27,6 +27,7 @@ app.use(session({
 app.use(cookies());
 app.use(userLoggedMiddleware);
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json())
 app.use(methodOverride('_method'));
 
 

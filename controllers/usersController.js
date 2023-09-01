@@ -42,13 +42,14 @@ const usersController = {
         res.render('users/login');
     },
     processLogin: (req, res) => {
-        // const loginValidation = validationResult(req);
-        // if (loginValidation.errors.length > 0) {
-        //     return res.render('users/login', {
-        //         errors: loginValidation.mapped(), //mapped() convierte el array errors de registerValidation en un objeto literal donde cada uno tiene las propiedades de origen
-        //         oldData: req.body
-        //     })
-        // }
+        console.log("req.body:", req.body);
+        const loginValidation = validationResult(req);
+        if (loginValidation.errors.length > 0) {
+            return res.render('users/login', {
+                errors: loginValidation.mapped(), //mapped() convierte el array errors de registerValidation en un objeto literal donde cada uno tiene las propiedades de origen
+                oldData: req.body
+            })
+        }
         let userToLogin = User.findByField('email', req.body.email);
 		if(userToLogin) {
 			let isOkThePassword = bcrypt.compareSync(req.body.password, userToLogin.password);
@@ -65,29 +66,27 @@ const usersController = {
                 } else {
                     return res.redirect('/users/profile');
                 }
-			}
-			return res.render('users/login', {
-				errors: {
-					password: {
-						msg: 'Contraseña incorrecta'
-					}
-				}
-			});
-		}
+			} else {
+                return res.render('users/login', {
+                    errors: {
+                        password: {
+                            msg: 'Contraseña incorrecta'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+		} else {
 
-		return res.render('users/login', {
-			errors: {
-				email: {
-					msg: 'Usuario no registrado'
-				}
-			}
-		});
+            return res.render('users/login', {
+                errors: {
+                    email: {
+                        msg: 'Usuario no registrado'
+                    }
+                },
+            });
+        }
     },
-    // profile: (req, res) => {
-    //     res.render('users/profile', {
-    //         user: req.session.userLogged
-    //     });
-    // },
     profile: (req, res) => {
         const userCategory = req.session.userLogged.category;
 

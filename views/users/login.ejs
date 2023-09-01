@@ -19,7 +19,7 @@
                 <form action="/users/login" method="POST">
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" class=<%= locals.errors && errors.email ? 'input-error' : null  %> required>
+                        <input type="email" id="email" name="email" class=<%= locals.errors && errors.email ? 'input-error' : null  %> value="<%= locals.oldData ? oldData.email : null %>">
                         <% if (locals.errors && errors.email) { %>
                             <div class="text-error">
                                 <%= errors.email.msg %>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña:</label>
-                        <input type="password" id="password" name="password" class=<%= locals.errors && errors.password ? 'input-error' : null  %> required>
+                        <input type="password" id="password" name="password" class=<%= locals.errors && errors.password ? 'input-error' : null  %>>
                         <% if (locals.errors && errors.password) { %>
                             <div class="text-error">
                                 <%= errors.password.msg %>
