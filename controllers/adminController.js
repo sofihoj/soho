@@ -1,8 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-let productos = JSON.parse(fs.readFileSync(path.resolve(__dirname,'../database/productos.json')));
-let productos2 = JSON.parse(fs.readFileSync(path.resolve(__dirname,'../database/productos2.json')));
+let productos2 = JSON.parse(fs.readFileSync(path.resolve(__dirname,'../databaseJSON/productos2.json')));
 
 const controller = {
     administrar: (req, res) => {

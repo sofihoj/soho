@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-let productos2 = JSON.parse(fs.readFileSync(path.resolve(__dirname,'../database/productos2.json')));
+let productos2 = JSON.parse(fs.readFileSync(path.resolve(__dirname,'../databaseJSON/productos2.json')));
 
 const controller = {
     index: (req, res) => {
