@@ -42,7 +42,6 @@ const usersController = {
         res.render('users/login');
     },
     processLogin: (req, res) => {
-        console.log("req.body:", req.body);
         const loginValidation = validationResult(req);
         if (loginValidation.errors.length > 0) {
             return res.render('users/login', {
