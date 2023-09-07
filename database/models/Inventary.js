@@ -1,8 +1,8 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = "Categoria";
+    let alias = "Inventario";
 
     let config = {
-        tableName: "categorias_productos"
+        tableName: "inventario"
     };
 
     let cols = {
@@ -12,20 +12,20 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true,
             allowNull: false
         },
-        categoria: {
-            type: dataTypes.STRING(100),
+        cantidad: {
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull: false
         }
     };
 
-    const Categoria = sequelize.define(alias, cols, config);
+    const Inventario = sequelize.define(alias, cols, config);
 
-    Categoria.associate = models => {
-        Categoria.hasMany(models.Producto, {
+    Inventario.associate = models => {
+        Inventario.hasMany(models.Producto, {
             as: 'productos',
-            foreignKey: 'categoria_id'
+            foreignKey: 'inventario_id'
         });
     };
 
-    return Categoria;
+    return Inventario;
 }

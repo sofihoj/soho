@@ -37,9 +37,13 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER(11),
             allowNull: true
         },
-        direccion_id: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: true
+        direccion: {
+            type: dataTypes.STRING(200),
+            allowNull: false
+        },
+        ciudad: {
+            type: dataTypes.STRING(100),
+            allowNull: false
         },
         tipo_usuario_id: {
             type: dataTypes.INTEGER(10).UNSIGNED,
@@ -48,6 +52,18 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     const Usuario = sequelize.define(alias, cols, config);
+
+    Usuario.associate = models => {
+        Usuario.belongsTo(models.TipoUsuario, {
+            as: 'tipo_usuario',
+            foreignKey: 'tipo_usuario_id'
+        });
+
+        Usuario.belongsToMany(models.Compra, {
+            as: 'compras',
+            foreignKey: 'usuario_id'
+        });
+    };
 
     return Usuario;
 }

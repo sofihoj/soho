@@ -37,11 +37,15 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull: false
         },
-        descuento_id: {
+        descuento: {
             type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull: true
         },
         tamanio_id: {
+            type: dataTypes.INTEGER(10).UNSIGNED,
+            allowNull: true
+        },
+        inventario_id: {
             type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull: true
         }
@@ -49,19 +53,27 @@ module.exports = (sequelize, dataTypes) => {
 
     const Producto = sequelize.define(alias, cols, config);
 
-    // Producto.associate = models => {
-    //     Producto.belongsTo(models.Descuento, {
-    //         as: 'descuento',
-    //         foreignKey: 'descuento_id'
-    //     });
+    Producto.associate = models => {
+        Producto.belongsTo(models.Categoria, {
+            as: 'categorias',
+            foreignKey: 'categoria_id'
+        });
 
-        // Producto.belongsToMany(models.Actor, {
-        //     as: 'actors',
-        //     through: 'actor_movie',
-        //     foreignKey: 'movie_id',
-        //     otherKey: 'actor_id'
-        // });
-    //};
+        Producto.belongsTo(models.Tamanio, {
+            as: 'tamanio',
+            foreignKey: 'tamanio_id'
+        });
+
+        Producto.belongsTo(models.Inventario, {
+            as: 'inventario',
+            foreignKey: 'inventario_id'
+        });
+
+        Producto.hasMany(models.DetalleCompra, {
+            as: 'detallesCompra',
+            foreignKey: 'producto_id'
+        });
+    };
 
     return Producto;
 }

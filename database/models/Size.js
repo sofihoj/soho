@@ -32,12 +32,12 @@ module.exports = (sequelize, dataTypes) => {
 
     const Tamanio = sequelize.define(alias, cols, config);
 
-    // Tamanio.associate = models => {
-    //     Tamanio.belongsTo(models.Producto, {
-    //         as: 'tamanio',
-    //         foreignKey: 'tamanio_id'
-    //     });
-    // };
+    Tamanio.associate = models => {
+        Tamanio.hasMany(models.Producto, {
+            as: 'productos',
+            foreignKey: 'tamanio_id'
+        });
+    };
 
     return Tamanio;
 }
