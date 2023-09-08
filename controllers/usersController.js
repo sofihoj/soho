@@ -122,9 +122,89 @@ const usersController = {
             return res.status(400).send('Categoría de usuario desconocida');
         }
     },
-    // edit: (req, res) => {
-    //     res.render('users/editProfile');
-    // },
+    edit: (req, res) => {
+        res.render('users/editProfile', { user: req.session.userLogged });
+    },
+    update: (req, res) => {
+        const validationErrors = validationResult(req);
+
+        if (validationErrors.errors.length > 0) {
+            // Hay errores de validación, muestra los mensajes de error en la vista
+            return res.render('users/editProfile', {
+                errors: validationErrors.mapped(),
+                oldData: req.body,
+                user: req.session.userLogged
+            });
+        }
+
+        let userId = req.session.userLogged.id
+        db.Usuario
+            .update({
+                    nombre: req.body.name,
+                    apellido: req.body.lastName,
+                    email: req.body.email,
+                    telefono: req.body.phoneNumber,
+                    direccion: req.body.address,
+                    ciudad: req.body.city
+                },
+                {
+                    where: {id:userId}
+                })
+                .then(() => {
+                    // Después de la actualización en la base de datos, actualiza la sesión del usuario
+                    return db.Usuario.findByPk(userId); // Recupera los datos actualizados del usuario
+                })
+                .then(updatedUser => {
+                    // Actualiza la sesión con los datos actualizados del usuario
+                    req.session.userLogged = updatedUser.get({ plain: true });
+
+                    return res.redirect('/users/profile');
+                })
+    },
+    changePassword: async (req, res) => {
+        const validationErrors = validationResult(req);
+
+        if (validationErrors.errors.length > 0) {
+            return res.render('users/editProfile', {
+                errors: validationErrors.mapped(),
+                oldData: req.body,
+                user: req.session.userLogged
+            });
+        }
+
+        const userId = req.session.userLogged.id; // ID del usuario autenticado
+        const { password, newPassword, repeatPassword } = req.body;
+        try {
+            // Buscar al usuario por su ID
+            const user = await db.Usuario.findByPk(userId);
+            // Verificar si la contraseña actual coincide
+            const isPasswordValid = await bcrypt.compare(password, user.contraseña);
+
+            if (!isPasswordValid) {
+                // La contraseña actual no coincide, muestra un mensaje de error
+                return res.render('users/editProfile', {
+                    errors: {
+                        password: {
+                            msg: 'La contraseña actual es incorrecta'
+                        }
+                    },
+                    oldData: req.body,
+                    user: req.session.userLogged
+                });
+            }
+            // Hash de la nueva contraseña
+            const hashedPassword = await bcrypt.hash(newPassword, 10);
+            // Actualizar la contraseña del usuario en la base de datos
+            await user.update({
+                contraseña: hashedPassword
+            });
+            // Redirigir al perfil del usuario después de cambiar la contraseña
+            return res.redirect('/users/profile');
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('Error interno del servidor');
+        }
+    },
     logout: (req, res) => {
         res.clearCookie('userEmail');
         req.session.destroy();
