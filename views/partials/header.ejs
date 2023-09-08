@@ -1,7 +1,7 @@
 <header>
     <div class="top-header">
         <% if (locals.isLogged) { %>
-            <p><span>Hola <a href="/users/profile"><%= locals.userLogged.name %></a>!</span>|<span><a href="/users/logout">Log out</a></span></p>
+            <p><span>Hola <a href="/users/profile"><%= locals.userLogged.nombre %></a>!</span>|<span><a href="/users/logout">Log out</a></span></p>
         <% } else { %>
             <p><span><a href="/users/login">Login</a></span>|<span><a href="/users/signup">Sign up</a></span></p>
         <% } %>

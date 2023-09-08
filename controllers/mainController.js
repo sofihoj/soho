@@ -1,5 +1,3 @@
-const path = require('path');
-const fs = require('fs');
 const db = require('../database/models');
 //const { Producto, Categoria } = require('../database/models'); --> Asi evitaria usar db.Producto, db.Categoria, sólo sería Producto o Categoria
 
@@ -28,7 +26,7 @@ const controller = {
                         where: {
                             nombre: formatearGuion(productoSeleccionado)
                         },
-                        include: ['categoria']
+                        include: ['categoria', 'tamanio']
                     })
                         .then(producto => {
                             if (producto) {

@@ -30,6 +30,7 @@
                     <div class="funcionalidades">
                         <section>
                             <h2>$<%= producto.precio %></h2>
+                            <h2><%= producto.tamanio ? "Tamaño: " + producto.tamanio.diametro + " cm": ''  %></h2>
                             <div class="cantidadProductos">
                                 <button id="menos">-</button>
                                 <input type="number" value="1">

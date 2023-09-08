@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator')
+const db = require('../database/models');
 
 
 const User = require('../models/User');
@@ -17,26 +18,40 @@ const usersController = {
                 oldData: req.body
             })
         }
-        let existingUser = User.findByField('email', req.body.email);
-        if (existingUser) {
-            return res.render('users/signup', {
-                errors: {
-                    email: {
-                        msg: 'Este email ya está registrado'
-                    }
-                },
-                oldData: req.body
-            })
-        }
-        let userToCreate = {
-            ...req.body,
-            category: "user",
-            password: bcrypt.hashSync(req.body.password, 10)
-        }
 
-        let userCreated = User.create(userToCreate);
+        const { name, lastName, email, phoneNumber, city, address, password } = req.body;
 
-		return res.redirect('/users/login');
+        db.Usuario.findOne({ where: { email } })
+        .then(existingUser => {
+            if (existingUser) {
+                return res.render('users/signup', {
+                    errors: {
+                        email: {
+                            msg: 'Este email ya está registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+
+            return db.Usuario.create({
+                nombre: name,
+                apellido: lastName,
+                email: email,
+                contraseña: bcrypt.hashSync(password, 10),
+                telefono: phoneNumber,
+                direccion: address,
+                ciudad: city,
+                tipo_usuario_id: 2,
+            });
+        })
+        .then(() => {
+            return res.redirect('/users/login');
+        })
+        .catch(error => {
+            console.error(error);
+            return res.status(500).send('Error en el servidor');
+        });
     },
     login: (req, res) => {
         res.render('users/login');
@@ -49,23 +64,37 @@ const usersController = {
                 oldData: req.body
             })
         }
-        let userToLogin = User.findByField('email', req.body.email);
-		if(userToLogin) {
-			let isOkThePassword = bcrypt.compareSync(req.body.password, userToLogin.password);
-			if (isOkThePassword) {
-				delete userToLogin.password; //para evitar que me traiga la password a la session, por seguridad
-				req.session.userLogged = userToLogin; //guardo la sesión del usuario
 
-				if(req.body.remember_user) {
-					res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
-				}
+        const { email, password } = req.body;
+        db.Usuario.findOne({ where: { email } })
+        .then(userToLogin => {
+            if (!userToLogin) {
+                return res.render('users/login', {
+                    errors: {
+                        email: {
+                            msg: 'Usuario no registrado'
+                        }
+                    },
+                });
+            }
 
-				if (userToLogin.category === 'admin') {
-                    return res.redirect('/administrar');
-                } else {
-                    return res.redirect('/users/profile');
+            const isOkThePassword = bcrypt.compareSync(password, userToLogin.contraseña);
+
+            if (isOkThePassword) {
+                // Eliminar la contraseña antes de almacenarla en la sesión
+                delete userToLogin.contraseña;
+                req.session.userLogged = userToLogin; // Guardar la sesión del usuario
+
+                if (req.body.remember_user) {
+                    res.cookie('userEmail', email, { maxAge: (1000 * 60) * 60 });
                 }
-			} else {
+
+                if (userToLogin.tipo_usuario_id === 2) {
+                    return res.redirect('/users/profile');
+                } else if (userToLogin.tipo_usuario_id === 1) {
+                    return res.redirect('/administrar');
+                }
+            } else {
                 return res.render('users/login', {
                     errors: {
                         password: {
@@ -75,23 +104,18 @@ const usersController = {
                     oldData: req.body
                 });
             }
-		} else {
-
-            return res.render('users/login', {
-                errors: {
-                    email: {
-                        msg: 'Usuario no registrado'
-                    }
-                },
-            });
-        }
+        })
+        .catch(error => {
+            console.error(error);
+            return res.status(500).send('Error en el servidor');
+        });
     },
     profile: (req, res) => {
-        const userCategory = req.session.userLogged.category;
+        const userCategory = req.session.userLogged.tipo_usuario_id;
 
-        if (userCategory === 'admin') {
+        if (userCategory === 1) {
             return res.redirect('/administrar');
-        } else if (userCategory === 'user') {
+        } else if (userCategory === 2) {
             return res.render('users/profile', {
                 user: req.session.userLogged
             });
