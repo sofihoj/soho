@@ -8,13 +8,7 @@ const controller = {
     administrar: async (req, res) => {
         try {
           const productos = await db.Producto.findAll({
-            include: [
-                {
-                    model: db.Categoria,
-                    as: 'categoria',
-                    attributes: ['categoria']
-                }
-            ]
+            include: ['categoria']
         });
           res.render('admin/administrar', { productos, formatear, formatearEspacio, formatearGuion });
         } catch (error) {

@@ -22,29 +22,25 @@ const controller = {
                 categoria: formatearGuion(categoriaSeleccionada)
             }
         })
-        .then(categoria => {
-            if(categoria) {
-                db.Producto.findOne({
-                    where: {
-                        nombre: formatearGuion(productoSeleccionado)
-                    },
-                    include: [{
-                        model: db.Categoria,
-                        as: 'categoria',
-                        attributes: ['categoria']
-                    }]
-                })
-                .then(producto => {
-                    if (producto) {
-                        res.render('productDetail', { producto, categoria: producto.categoria.categoria, formatearEspacio });
-                    } else {
-                        res.send(`Producto  ${req.params.product} inexistente`);
-                    }
-                });
-            } else {
-                res.send(`Categoría ${req.params.category} inexistente`);
-            }
-        })
+            .then(categoria => {
+                if (categoria) {
+                    db.Producto.findOne({
+                        where: {
+                            nombre: formatearGuion(productoSeleccionado)
+                        },
+                        include: ['categoria']
+                    })
+                        .then(producto => {
+                            if (producto) {
+                                res.render('productDetail', { producto, categoria: producto.categoria.categoria, formatearEspacio });
+                            } else {
+                                res.send(`Producto  ${req.params.product} inexistente`);
+                            }
+                        });
+                } else {
+                    res.send(`Categoría ${req.params.category} inexistente`);
+                }
+            })
     },
     categories: (req, res) => {
         const categoriaSeleccionada = req.params.categoria;
@@ -53,31 +49,27 @@ const controller = {
             where: {
                 categoria: formatearGuion(categoriaSeleccionada),
             },
-            include: [{
-                model: db.Producto,
-                as: 'productos',
-                attributes: ['nombre', 'imagen', 'precio']
-            }],
+            include: ['productos'],
         })
-        .then(categoria => {
-            if (categoria) {
-                res.render('categories', { producto: categoria.productos, categoria, categoriaSeleccionada, formatearEspacio });
-            } else {
-                res.send('Categoría inválida');
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            res.status(500).send('Error interno del servidor');
-        });
+            .then(categoria => {
+                if (categoria) {
+                    res.render('categories', { producto: categoria.productos, categoria, categoriaSeleccionada, formatearEspacio });
+                } else {
+                    res.send('Categoría inválida');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                res.status(500).send('Error interno del servidor');
+            });
     }
 }
 
 function formatear(categoria) {
     return categoria
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .replace(/\b\w/g, c => c.toUpperCase());
-  }
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/\b\w/g, c => c.toUpperCase());
+}
 
 function formatearEspacio(categoryName) {
     return categoryName.replace(' ', '-').toLowerCase();
