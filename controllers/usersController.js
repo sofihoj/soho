@@ -9,20 +9,21 @@ const usersController = {
     signup: (req, res) => {
         res.render('users/signup')
     },
-    processRegister: (req, res) => {
-        const registerValidation = validationResult(req);
-        //registerValidation es un objeto literal con una propiedad errors que es un array
-        if (registerValidation.errors.length > 0) {
-            return res.render('users/signup', {
-                errors: registerValidation.mapped(), //mapped() convierte el array errors de registerValidation en un objeto literal donde cada uno tiene las propiedades de origen
-                oldData: req.body
-            })
-        }
+    processRegister: async (req, res) => {
+        try {
+            const registerValidation = validationResult(req);
 
-        const { name, lastName, email, phoneNumber, city, address, password } = req.body;
+            if (registerValidation.errors.length > 0) {
+                return res.render('users/signup', {
+                    errors: registerValidation.mapped(),
+                    oldData: req.body
+                });
+            }
 
-        db.Usuario.findOne({ where: { email } })
-        .then(existingUser => {
+            const { name, lastName, email, phoneNumber, city, address, password } = req.body;
+
+            const existingUser = await db.Usuario.findOne({ where: { email } });
+
             if (existingUser) {
                 return res.render('users/signup', {
                     errors: {
@@ -34,7 +35,7 @@ const usersController = {
                 });
             }
 
-            return db.Usuario.create({
+            await db.Usuario.create({
                 nombre: name,
                 apellido: lastName,
                 email: email,
@@ -44,14 +45,12 @@ const usersController = {
                 ciudad: city,
                 tipo_usuario_id: 2,
             });
-        })
-        .then(() => {
+
             return res.redirect('/users/login');
-        })
-        .catch(error => {
+        } catch (error) {
             console.error(error);
             return res.status(500).send('Error en el servidor');
-        });
+        }
     },
     login: (req, res) => {
         res.render('users/login');
