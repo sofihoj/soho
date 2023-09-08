@@ -33,12 +33,12 @@ module.exports = (sequelize, dataTypes) => {
             as: 'usuarios',
             foreignKey: 'usuario_id'
         });
-    };
 
-    Compra.hasMany(models.DetalleCompra, {
-        as: 'detallesCompra',
-        foreignKey: 'compra_id'
-    });
+        Compra.hasMany(models.DetalleCompra, {
+            as: 'detallesCompra',
+            foreignKey: 'compra_id'
+        });
+    };
 
     return Compra;
 }

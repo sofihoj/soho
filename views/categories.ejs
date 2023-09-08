@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOHO macramé | <%= producto.categoria %></title>
+    <title>SOHO macramé | <%= (categoria.categoria).toUpperCase() %></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
@@ -14,14 +14,14 @@
     <main>
         <%- include('./partials/sidebar.ejs')%>
         <div class="main-header">
-            <p><%= formatear(categoriaSeleccionada) %></p>
+            <p><%= categoria.categoria %></p>
         </div>
         <div class="productos">
             <% producto.forEach(producto => { %>
-                <a href="/products/<%= producto.categoria %>/<%= producto.nombre.toLowerCase() %>">
+                <a href="/products/<%= formatearEspacio(categoria.categoria) %>/<%= formatearEspacio(producto.nombre) %>">
                     <div class="card-producto">
                         <div class="photo">
-                            <img src="/img/<%= producto.categoria %>/<%= producto.imagen %>" alt="<%= producto.nombre %>">
+                            <img src="/img/<%= formatearEspacio(categoria.categoria) %>/<%= formatearEspacio(producto.imagen) %>" alt="<%= producto.nombre %>">
                         </div>
                         <div class="info-producto">
                             <p class="nombre-producto">

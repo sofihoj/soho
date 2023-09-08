@@ -2,7 +2,8 @@ module.exports = (sequelize, dataTypes) => {
     let alias = "Categoria";
 
     let config = {
-        tableName: "categorias_productos"
+        tableName: "categorias_productos",
+        timestamps: false
     };
 
     let cols = {

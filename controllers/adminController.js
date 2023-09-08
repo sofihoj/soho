@@ -1,12 +1,27 @@
 const path = require('path');
 const fs = require('fs');
+const db = require('../database/models');
 
 let productos2 = JSON.parse(fs.readFileSync(path.resolve(__dirname,'../databaseJSON/productos2.json')));
 
 const controller = {
-    administrar: (req, res) => {
-        res.render('admin/administrar', {productos2, formatear })
-    },
+    administrar: async (req, res) => {
+        try {
+          const productos = await db.Producto.findAll({
+            include: [
+                {
+                    model: db.Categoria,
+                    as: 'categoria',
+                    attributes: ['categoria']
+                }
+            ]
+        });
+          res.render('admin/administrar', { productos, formatear, formatearEspacio, formatearGuion });
+        } catch (error) {
+          console.error('Error al obtener productos de la base de datos:', error);
+          res.status(500).send('Error interno del servidor');
+        }
+      },
     create: (req, res) => {
         res.render('admin/crear')
     },
@@ -73,6 +88,14 @@ function formatear(categoria) {
 
 function transformToCamelCase(texto) {
     return texto.replace(/\s+(\w)/g, (_, match) => match.toUpperCase());
+}
+
+function formatearEspacio(categoryName) {
+    return categoryName.replace(' ', '-').toLowerCase();
+}
+
+function formatearGuion(categoryName) {
+    return categoryName.replace('-', ' ').toLowerCase();
 }
 
 module.exports = controller
