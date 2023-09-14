@@ -63,7 +63,6 @@ const usersController = {
                 oldData: req.body
             })
         }
-
         const { email, password } = req.body;
         db.Usuario.findOne({ where: { email } })
         .then(userToLogin => {
@@ -204,6 +203,21 @@ const usersController = {
             console.error(error);
             return res.status(500).send('Error interno del servidor');
         }
+    },
+    destroy: (req, res) => {
+        //const userId = req.session.userLogged.id; // ID del usuario autenticado
+
+        db.Usuario
+        .destroy({
+            where: {
+                id: req.session.userLogged.id
+            }, force: true
+        })
+        .then(req.session.destroy())
+        .then(() => {
+            return res.redirect('/')
+        })
+        .catch(error => res.send(error))
     },
     logout: (req, res) => {
         res.clearCookie('userEmail');

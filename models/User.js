@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path')
+const db = require('../database/models')
 
 const User = {
     filePath: path.resolve(__dirname,'../databaseJSON/users.json'),
@@ -25,6 +26,7 @@ const User = {
     findByField: function (field, text) {
 		let allUsers = this.findAll();
 		let userFound = allUsers.find(user => user[field] === text);
+		//let userFound = await db.Usuario.findOne({where:{[field]: text}})
 		return userFound;
 	},
     create: function (userData) {

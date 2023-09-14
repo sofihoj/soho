@@ -66,5 +66,12 @@ module.exports = (sequelize, dataTypes) => {
         });
     };
 
+    // Usuario.findByField = async (field, value) => {
+    //     const user = await Usuario.findOne({
+    //       where: { [field]: value },
+    //     });
+    //     return user;
+    // };
+
     return Usuario;
 }

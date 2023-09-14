@@ -17,6 +17,7 @@ router.get('/profile', authMiddleware, usersController.profile);
 router.get('/profile/edit/', usersController.edit);
 router.put('/profile/edit/', validationsEditProfile, usersController.update);
 router.put('/profile/edit-password/', authMiddleware, validationsPassword, usersController.changePassword);
+router.delete('/profile/delete', usersController.destroy)
 router.get('/logout', usersController.logout);
 
 

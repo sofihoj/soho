@@ -98,6 +98,9 @@
                     </div>
                     <button type="submit">Cambiar contraseña</button>
                 </form>
+                <form class="form" action="/users/profile/delete?_method=DELETE" method="POST">
+                    <button type="submit" style="background-color: red">Eliminar cuenta</button>
+                </form>
             </div>
         </main>
         <%- include('../partials/footer.ejs')%>
