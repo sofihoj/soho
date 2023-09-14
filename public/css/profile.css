@@ -57,6 +57,21 @@ a{
     margin: 0 5px 0 0;
 }
 
+#editar:hover {
+    color:#47453C;
+    font-weight: bold;
+}
+
+#change-password {
+    width: 70vw;
+    background-color: #47453C;
+    color:#EBEBEB;
+    padding: 8px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 @media only screen and (max-width: 767px)  {
     .profile-box {
         display: flex;
