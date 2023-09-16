@@ -4,19 +4,19 @@ const path = require('path');
 const adminController = require('../controllers/adminController');
 const router = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware');
+const validationsProducts = require('../middlewares/validationsProducts')
 
-function transformToCamelCase(texto) {
-    return texto.replace(/\s+(\w)/g, (_, match) => match.toUpperCase());
+function formatearEspacio(categoryName) {
+    return categoryName.replace(' ', '-').toLowerCase();
 }
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const categoria = req.body.categoria;
-        cb(null, path.resolve(__dirname, `../public/img/${transformToCamelCase(categoria)}`));
+        cb(null, path.resolve(__dirname, `../public/img`));
     },
     filename: (req, file, cb) => {
         const nombreProducto = req.body.nombre;
-        const nombreArchivo = `${nombreProducto.toLowerCase()}-${Date.now()}${path.extname(file.originalname)}`;
+        const nombreArchivo = `${formatearEspacio(nombreProducto)}-${Date.now()}${path.extname(file.originalname)}`;
         cb(null, nombreArchivo);
     }
 });
@@ -27,7 +27,7 @@ const upload = multer({ storage })
 
 router.get('/', authMiddleware, adminController.administrar);
 router.get('/create', authMiddleware, adminController.create);
-router.post('/create', upload.single('imagen'), adminController.save);
+router.post('/create', validationsProducts, upload.single('imagen'), adminController.save);
 // router.get('/detail/:id', adminController.show);
 router.get('/edit/:nombre', adminController.edit);
 router.put('/edit/:nombre', upload.single('imagen'), adminController.update)

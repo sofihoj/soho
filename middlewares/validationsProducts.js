@@ -4,7 +4,6 @@ const validations = [
     body('nombre')
         .notEmpty().withMessage('Campo obligatorio').bail()
         .custom(value => {
-            // Expresión regular para verificar que no hay solo números y caracteres especiales
             if (/^[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(value)) {
                 throw new Error('El nombre no puede consistir solo de números y/o caracteres especiales');
             }
@@ -13,7 +12,6 @@ const validations = [
         .trim(),
     body('descripcion')
         .custom(value => {
-            // Expresión regular para verificar que no hay solo números y caracteres especiales
             if (/^[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(value)) {
             throw new Error('El nombre no puede consistir solo de números y/o caracteres especiales');
             }
@@ -25,7 +23,9 @@ const validations = [
         .isNumeric().withMessage('Ingrese sólo números').bail()
         .trim(),
     body('cateogoria')
-        .notEmpty().withMessage('Elije una categoría').bail()
+        .notEmpty().withMessage('Elije una categoría').bail(),
+    body('imagen')
+        .notEmpty().withMessage('Carga una imagen de tu producto')
 
 ]
 

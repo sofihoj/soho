@@ -58,12 +58,9 @@
                     <div class="input-box">
                         <select name="categoria">
                             <option disabled>- Categoría -</option>
-                            <option value="tapices" <%= transformToCamelCase(producto.categoria) ==='tapices' ? 'selected' : '' %>>Tapices</option>
-                            <option value="espejos" <%=transformToCamelCase(producto.categoria) ==='espejos' ? 'selected' : '' %>>Espejos</option>
-                            <option value="cuelgaMacetas" <%=transformToCamelCase(producto.categoria) ==='cuelgaMacetas' ? 'selected' : '' %>>Cuelga macetas</option>
-                            <option value="sujetaCortinas" <%=transformToCamelCase(producto.categoria) ==='sujetaCortinas' ? 'selected' : '' %>>Sujeta cortinas</option>
-                            <option value="varios" <%=transformToCamelCase(producto.categoria) ==='varios' ? 'selected' : '' %>>Varios</option>
-                            <option value="cursos" <%=transformToCamelCase(producto.categoria) ==='cursos' ? 'selected' : '' %>>Cursos</option>
+                            <% categorias.forEach(categoria => { %>
+                                <option value="<%= categoria.id %>" <%= producto.categoria_id === categoria.id ? 'selected' : '' %>><%= categoria.categoria %></option>
+                            <% }); %>
                         </select>
                     </div>
                     <div class="input-box">

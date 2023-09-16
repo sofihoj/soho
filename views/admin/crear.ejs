@@ -52,22 +52,34 @@
         <div class="form">
             <form action="/administrar/create" method="POST" enctype="multipart/form-data">
                 <div class="inputs">
-                    <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" required>
-                    <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" required>
-                    <input type="text" id="precio" name="precio" placeholder="Precio" required>
+                    <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" class="<%= locals.errors && errors.nombre ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.nombre : null %>">
+                    <% if (locals.errors && errors.nombre) { %>
+                        <div class="text-error">
+                            <%= errors.nombre.msg %>
+                        </div>
+                    <% } %>
+                    <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto">
+                    <input type="text" id="precio" name="precio" placeholder="Precio" class="<%= locals.errors && errors.precio ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.precio : null %>">
+                    <% if (locals.errors && errors.precio) { %>
+                        <div class="text-error">
+                            <%= errors.precio.msg %>
+                        </div>
+                    <% } %>
                     <div class="input-box">
-                        <select name="categoria">
+                        <select name="categoria" required>
                             <option disabled selected>- Categoría -</option>
-                            <option value="tapices">Tapices</option>
-                            <option value="espejos">Espejos</option>
-                            <option value="cuelgaMacetas">Cuelga macetas</option>
-                            <option value="sujetaCortinas">Sujeta cortinas</option>
-                            <option value="varios">Varios</option>
-                            <option value="cursos">Cursos</option>
+                            <% categorias.forEach(categoria => { %>
+                                <option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+                            <% }); %>
                         </select>
+                        <% if (locals.errors && errors.categoria) { %>
+                            <div class="text-error">
+                                <%= errors.categoria.msg %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="input-box">
-                        <input type="file" id="imagen" name="imagen" placeholder="Imagen del Producto">
+                        <input type="file" id="imagen" name="imagen" placeholder="Imagen del Producto" >
                     </div>
                 </div>
                 <div class="buttons">

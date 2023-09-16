@@ -7,11 +7,12 @@
 .add-product {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .icon-add {
     background-color: #9F967F;
-    padding: 5px 15px;
+    padding: 3px 15px;
     color: #ebebeb;
     font-weight: bold;
     font-size: 30px;
@@ -25,6 +26,18 @@
     color: #967D71;
     font-weight: bold;
     font-size: 18px;
+}
+
+.admin-menu a:hover .add-product p{
+    color: #47453C;
+}
+
+.admin-menu a:hover .add-product div {
+    background-color: #47453C;
+}
+
+.admin-menu a {
+    width: 30vw;
 }
 
 table {
@@ -225,6 +238,19 @@ td:nth-child(2) {
     table {
         width: 90vw;
         table-layout: fixed;
+    }
+
+    .add-product p {
+        font-size: 12px;
+    }
+
+    .admin-menu a {
+        width: 50vw;
+    }
+
+    .icon-add {
+        padding: 3px 11px;
+        font-size: 20px;
     }
 }
 

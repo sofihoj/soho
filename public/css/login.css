@@ -53,6 +53,10 @@ form {
     border: red 1px solid;
 }
 
+.inputs .input-error {
+    border: red 1px solid;
+}
+
 .form button {
     background-color: #9A6C6C;
     color: #ebebeb;
