@@ -52,20 +52,45 @@
         <div class="form">
             <form action="/administrar/edit/<%= producto.nombre%>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="inputs">
-                    <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" value="<%= producto.nombre%>"required>
-                    <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" value="<%= producto.descripcion%>" required>
-                    <input type="text" id="precio" name="precio" placeholder="Precio" value="<%= producto.precio%>" required>
+                    <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" class="<%= locals.errors && errors.nombre ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.nombre : producto.nombre%>">
+                    <% if (locals.errors && errors.nombre) { %>
+                        <div class="text-error">
+                            <%= errors.nombre.msg %>
+                        </div>
+                    <% } %>
+                    <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" class="<%= locals.errors && errors.descripcion ? 'input-error' : ''  %>" value="<%=locals.oldData ? oldData.descripcion : producto.descripcion%>">
+                    <% if (locals.errors && errors.descripcion) { %>
+                        <div class="text-error">
+                            <%= errors.descripcion.msg %>
+                        </div>
+                    <% } %>
+                    <input type="text" id="precio" name="precio" placeholder="Precio" class="<%= locals.errors && errors.precio ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.precio : producto.precio%>" >
+                    <% if (locals.errors && errors.precio) { %>
+                        <div class="text-error">
+                            <%= errors.precio.msg %>
+                        </div>
+                    <% } %>
                     <div class="input-box">
                         <select name="categoria">
                             <option disabled>- Categoría -</option>
                             <% categorias.forEach(categoria => { %>
-                                <option value="<%= categoria.id %>" <%= producto.categoria_id === categoria.id ? 'selected' : '' %>><%= categoria.categoria %></option>
+                                <option value="<%= locals.oldData ? oldData.categoria : categoria.id %>" <%= producto.categoria_id === categoria.id ? 'selected' : '' %>><%= categoria.categoria %></option>
                             <% }); %>
                         </select>
                     </div>
+                    <% if (locals.errors && errors.categoria) { %>
+                        <div class="text-error">
+                            <%= errors.categoria.msg %>
+                        </div>
+                    <% } %>
                     <div class="input-box">
                         <input type="hidden" name="oldImagen" value="<%= producto.imagen %>">
                         <input type="file" id="imagen" name="imagen" placeholder="Imagen del Producto">
+                        <% if (locals.errors && errors.imagen) { %>
+                            <div class="text-error">
+                                <%= errors.imagen.msg %>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
                 <div class="buttons">

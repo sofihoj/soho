@@ -5,6 +5,8 @@ const adminController = require('../controllers/adminController');
 const router = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware');
 const validationsProducts = require('../middlewares/validationsProducts')
+const validationsProductEdit = require('../middlewares/validationsProductEdit')
+//const errorValidateEdit = require("../middlewares/errorValidationEdit");
 
 function formatearEspacio(categoryName) {
     return categoryName.replace(' ', '-').toLowerCase();
@@ -23,14 +25,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-
-
 router.get('/', authMiddleware, adminController.administrar);
 router.get('/create', authMiddleware, adminController.create);
-router.post('/create', validationsProducts, upload.single('imagen'), adminController.save);
+router.post('/create', upload.single('imagen'), validationsProducts, adminController.save);
 // router.get('/detail/:id', adminController.show);
 router.get('/edit/:nombre', adminController.edit);
-router.put('/edit/:nombre', upload.single('imagen'), adminController.update)
+router.put('/edit/:nombre', upload.single('imagen'), validationsProductEdit, adminController.update)
 router.get('/delete/:nombre', adminController.delete);
 
 module.exports = router;

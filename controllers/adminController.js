@@ -52,6 +52,19 @@ const controller = {
                 });
             }
 
+            // if (!req.file || !req.file.filename) {
+            //     // El campo de entrada de tipo "file" está vacío, muestra un mensaje de error.
+            //     return res.render('admin/crear', {
+            //         categorias,
+            //         errors: {
+            //             imagen: {
+            //                 msg: 'Carga una imagen de tu producto'
+            //             }
+            //         },
+            //         oldData: req.body
+            //     });
+            // }
+
             await db.Producto.create({
                 nombre: nombre,
                 precio: precio,
@@ -80,6 +93,7 @@ const controller = {
             const nombre = req.params.nombre;
             const producto = await db.Producto.findOne({ where: { nombre } }, {include: ['categoria']})
             const categorias = await db.Categoria.findAll();
+            console.log(producto)
             if (!producto) {
                 return res.status(404).send('Producto no encontrado');
             }
@@ -90,11 +104,42 @@ const controller = {
             res.status(500).send('Error interno del servidor');
         }
     },
-    update: (req, res) => {
+    update: async (req, res) => {
         const { nombre, descripcion, precio, categoria } = req.body;
-        const nombreProducto = req.params.nombre;
+        const nombreProductoActual = req.params.nombre;
         const nuevaImagen = req.file;
-        const oldImagen = req.body.oldImagen;
+        //const oldImagen = req.body.oldImagen;
+        const categorias = await db.Categoria.findAll();
+        const editProduct = validationResult(req);
+
+        if (editProduct.errors.length > 0) {
+            const producto = await db.Producto.findOne({ where: { nombre: nombreProductoActual } }, { include: ['categoria'] })
+            return res.render('admin/editar', {
+                categorias,
+                errors: editProduct.mapped(),
+                oldData: req.body,
+                producto
+            });
+        }
+
+
+        if (nombre != nombreProductoActual) {
+            const producto = await db.Producto.findOne({ where: { nombre } });
+            if (producto) {
+                return res.render('admin/editar', {
+                    categorias,
+                    errors: {
+                        nombre: {
+                            msg: 'Ya existe un producto con este nombre'
+                        }
+                    },
+                    producto: {
+                        nombre: nombreProductoActual
+                    },
+                    oldData: req.body,
+                });
+            }
+        }
 
         const productoModificado = {
             nombre,
@@ -106,19 +151,21 @@ const controller = {
         if (nuevaImagen) {
             productoModificado.imagen = nuevaImagen.filename;
         } else {
-            productoModificado.imagen = oldImagen;
+            productoModificado.imagen = db.Producto.imagen;
         }
 
         db.Producto
-        .update(
-            productoModificado,
-            {
-                where: {nombre: nombreProducto}
+            .update(
+                productoModificado,
+                {
+                    where: { nombre: nombreProductoActual }
+                })
+            .then(() => {
+                return res.redirect('/administrar')
             })
-        .then(()=> {
-            return res.redirect('/administrar')})
-        .catch(error => res.send(error))
+            .catch(error => res.send(error))
     }
+
 }
 
 function formatear(categoria) {
