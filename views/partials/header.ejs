@@ -19,11 +19,14 @@
             <li><a href="/">Inicio</a></li>
             <li class="dropdown"><a href="#" class="dropbtn">Categorías <i class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-content">
-                    <a href="/categories/tapices">Tapices</a>
+                    <!-- <a href="/categories/tapices">Tapices</a>
                     <a href="/categories/espejos">Espejos</a>
                     <a href="/categories/cuelga-macetas">Cuelga macetas</a>
                     <a href="/categories/sujeta-cortinas">Sujeta cortinas</a>
-                    <a href="/categories/varios">Varios</a>
+                    <a href="/categories/varios">Varios</a> -->
+                    <% categorias.forEach(categoria => { %>
+                        <a href="/categories/<%= categoria.categoria %>"><%= categoria.categoria %></a>
+                    <% }); %>
                 </div>
             </li>
             <li><a href="#">Sobre nosotros</a></li>

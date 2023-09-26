@@ -8,7 +8,8 @@ const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
-const restrictToAdmin = require('./middlewares/restrictAdminMiddleware')
+const restrictToAdmin = require('./middlewares/restrictAdminMiddleware');
+const categoriasMiddleware = require('./middlewares/categoriasMiddleware');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(session({
 }));
 app.use(cookies());
 app.use(userLoggedMiddleware);
+app.use(categoriasMiddleware);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(methodOverride('_method'));

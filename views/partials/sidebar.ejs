@@ -12,13 +12,15 @@
             <li><a href="/index">Inicio</a></li>
             <li class="menu-item"><a href="#">Categorías <span class="arrow">&#9658;</span></a>
                 <ul class="submenu">
-                    <li><a href="/categories/tapices">Tapices</a></li>
+                    <!-- <li><a href="/categories/tapices">Tapices</a></li>
                     <li><a href="/categories/espejos">Espejos </a></li>
                     <li><a href="/categories/cuelgaMacetas">Cuelga macetas</a></li>
                     <li><a href="/categories/sujetaCortinas">Sujeta cortinas</a></li>
-                    <li><a href="/categories/varios">Varios</a></li>
-                    <li><a href="#">Cursos</a></li>
-                  </ul>
+                    <li><a href="/categories/varios">Varios</a></li> -->
+                    <% categorias.forEach(categoria => { %>
+                        <li><a href="/categories/<%= categoria.categoria %>"><%= categoria.categoria %></a></li>
+                    <% }); %>
+                </ul>
             </li>
             <li><a href="#">Sobre nosotros</a></li>
             <li><a href="#">Envíos</a></li>
