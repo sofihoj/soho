@@ -34,6 +34,13 @@ form {
     width: 100%;
 }
 
+.form .input-box p {
+    color: red;
+    text-align: end;
+    font-size: 0.8em;
+    margin-top: 0;
+}
+
 @media (max-width: 480px) {
     .form {
         margin: 20px 40px;

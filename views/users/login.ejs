@@ -20,7 +20,6 @@
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" class="<%= locals.errors && errors.email ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.email : null %>">
-                        <!-- <p class="error"></p> -->
                         <% if (locals.errors && errors.email) { %>
                             <div class="text-error">
                                 <%= errors.email.msg %>
@@ -30,7 +29,6 @@
                     <div class="form-group">
                         <label for="password">Contraseña:</label>
                         <input type="password" id="password" name="password" class="<%= locals.errors && errors.password ? 'input-error' : ''  %>">
-                        <p class="error"></p>
                         <% if (locals.errors && errors.password) { %>
                             <div class="text-error">
                                 <%= errors.password.msg %>
