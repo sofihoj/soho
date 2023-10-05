@@ -1,3 +1,6 @@
+// const { showError, clearError, blurInput } = require('./validationFunctions')
+//import { showError, clearError, blurInput} from "./validationFunctions";
+
 window.onload = function() {
     const email = document.querySelector('#email');
     const password = document.querySelector('#password');
