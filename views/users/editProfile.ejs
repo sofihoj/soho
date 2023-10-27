@@ -70,12 +70,13 @@
                         </div>
                     </div>
                     <button type="submit">Actualizar datos</button>
-                    <a href="/users/profile"><button>Volver</button></a>
+                    <!-- <a href="/users/profile"><button>Volver</button></a> -->
                 </form>
+                <a href="/users/profile"><button>Volver</button></a>
                 <form class="form" action="/users/profile/edit-password?_method=PUT" method="POST">
                     <p id="change-password">Quieres cambiar la contrseña?</p>
                     <div class="input-box">
-                        <input type="password" name="password" placeholder="Contraseña actual" class="<%= locals.errors && errors.password ? 'input-error' : null  %>" >
+                        <input type="password" name="password" id="oldPassword" placeholder="Contraseña actual" class="<%= locals.errors && errors.password ? 'input-error' : null  %>" >
                         <% if (locals.errors && errors.password) { %>
                             <div class="text-error">
                                 <%= errors.password.msg %>
@@ -83,7 +84,7 @@
                         <% } %>
                     </div>
                     <div class="input-box">
-                        <input type="password" name="newPassword" placeholder="Nueva contraseña" class="<%= locals.errors && errors.passwordRepeat ? 'input-error' : ''  %>" >
+                        <input type="password" name="newPassword" id="newPassword" placeholder="Nueva contraseña" class="<%= locals.errors && errors.passwordRepeat ? 'input-error' : ''  %>" >
                         <% if (locals.errors && errors.newPassword) { %>
                             <div class="text-error">
                                 <%= errors.newPassword.msg %>
@@ -91,7 +92,7 @@
                         <% } %>
                     </div>
                     <div class="input-box">
-                        <input type="password" name="passwordRepeat" placeholder="Repetir nueva contraseña" class="<%= locals.errors && errors.passwordRepeat ? 'input-error' : ''  %>" >
+                        <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="Repetir nueva contraseña" class="<%= locals.errors && errors.passwordRepeat ? 'input-error' : ''  %>" >
                         <% if (locals.errors && errors.passwordRepeat) { %>
                             <div class="text-error">
                                 <%= errors.passwordRepeat.msg %>
@@ -106,6 +107,7 @@
             </div>
         </main>
         <%- include('../partials/footer.ejs')%>
+        <script src="/js/editProfile-validations.js"></script>
         <script>
             /*Set ancho de sidebar*/
             function openNav() {
