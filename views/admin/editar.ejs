@@ -12,64 +12,40 @@
 <body>
     <%- include('../partials/header.ejs')%>
     <main>
-        <aside id="mySidebar">
-            <div class="top-sidebar">
-                <div class="search-input">
-                    <input type="text" placeholder="Buscar">
-                </div>
-                <div class="close-icon">
-                    <i class="fas fa-xmark" onclick="closeNav()"></i>
-                </div>
-            </div>
-            <div class="main-sidebar">
-                <ul class="main-menu">
-                    <li><a href="index">Inicio</a></li>
-                    <li class="menu-item"><a href="#">Categorías <span class="arrow">&#9658;</span></a>
-                        <ul class="submenu">
-                            <li><a href="#">Tapices</a></li>
-                            <li><a href="#">Espejos </a></li>
-                            <li><a href="#">Cuelga macetas</a></li>
-                            <li><a href="#">Sujeta cortinas</a></li>
-                            <li><a href="#">Varios</a></li>
-                            <li><a href="#">Cursos</a></li>
-                          </ul>
-                    </li>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Envíos</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="bottom-sidebar">
-                <ul>
-                    <li><a href="productCart"><i class="fas fa-light fa-cart-shopping"></i>Carrito</a></li>
-                    <li><a href="login"><i class="fas fa-regular fa-arrow-right-to-bracket"></i>Login</a></li>
-                </ul>
-            </div>
-        </aside>
+        <%- include('../partials/sidebar.ejs')%>
         <div class="main-header">
             <p>Editar producto</p>
         </div>
         <div class="form">
             <form action="/administrar/edit/<%= producto.nombre%>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="inputs">
-                    <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" class="<%= locals.errors && errors.nombre ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.nombre : producto.nombre%>">
-                    <% if (locals.errors && errors.nombre) { %>
-                        <div class="text-error">
-                            <%= errors.nombre.msg %>
-                        </div>
-                    <% } %>
-                    <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" class="<%= locals.errors && errors.descripcion ? 'input-error' : ''  %>" value="<%=locals.oldData ? oldData.descripcion : producto.descripcion%>">
-                    <% if (locals.errors && errors.descripcion) { %>
-                        <div class="text-error">
-                            <%= errors.descripcion.msg %>
-                        </div>
-                    <% } %>
-                    <input type="text" id="precio" name="precio" placeholder="Precio" class="<%= locals.errors && errors.precio ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.precio : producto.precio%>" >
-                    <% if (locals.errors && errors.precio) { %>
-                        <div class="text-error">
-                            <%= errors.precio.msg %>
-                        </div>
-                    <% } %>
+                    <div class="form-group">
+                        <input type="text" name="nombre" id="formProductName" placeholder="Nombre del producto" class="<%= locals.errors && errors.nombre ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.nombre : producto.nombre%>">
+                        <% if (locals.errors && errors.nombre) { %>
+                            <div class="text-error">
+                                <%= errors.nombre.msg %>
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="descripcion" id="descripcion" placeholder="Descripción del producto" class="<%= locals.errors && errors.descripcion ? 'input-error' : ''  %>" value="<%=locals.oldData ? oldData.descripcion : producto.descripcion%>">
+                        <% if (locals.errors && errors.descripcion) { %>
+                            <div class="text-error">
+                                <%= errors.descripcion.msg %>
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="precio" name="precio" placeholder="Precio" class="<%= locals.errors && errors.precio ? 'input-error' : ''  %>" value="<%= locals.oldData ? oldData.precio : producto.precio%>" >
+                        <% if (locals.errors && errors.precio) { %>
+                            <div class="text-error">
+                                <%= errors.precio.msg %>
+                            </div>
+                        <% } %>
+                    </div>
+
                     <div class="input-box">
                         <select name="categoria">
                             <option disabled>- Categoría -</option>
@@ -101,5 +77,32 @@
         </div>
     </main>
     <%- include('../partials/footer.ejs')%>
+    <script>
+        /*Set ancho de sidebar*/
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "300px";
+        }
+
+        /*Set posición de sidebar*/
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        //Obtener del menú "Categorías" y su submenú
+        const categoriasMenu = document.querySelector('.menu-item');
+        // const submenu = document.querySelector('.submenu');
+
+        //Agrega un evento de clic al elemento del menú "Categorías"
+        categoriasMenu.addEventListener('click', function() {
+            // Alternar la clase "collapsed" en el elemento del menú "Categorías"
+            categoriasMenu.classList.toggle('collapsed');
+        });
+
+        categoriasMenu.addEventListener('click', function() {
+            // Alternar la clase "open" en el elemento del menú "Categorías"
+            categoriasMenu.classList.toggle('open');
+            });
+    </script>
+    <script src="/js/editProduct-validations.js"></script>
 </body>
 </html>
