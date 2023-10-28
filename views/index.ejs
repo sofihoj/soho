@@ -6,6 +6,8 @@
         <title>Bisne macrame | HOME</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/light-mode.css" id="light-stylesheet">
+        <link rel="stylesheet" href="/css/dark-mode.css" id="dark-stylesheet" disabled>
     </head>
     <body>
         <%- include('./partials/header.ejs')%>
@@ -121,6 +123,7 @@
             </section>
         </main>
         <%- include('./partials/footer.ejs')%>
+        <script src="/js/dark-mode.js"></script>
         <script>
             /*Set ancho de sidebar*/
             function openNav() {
