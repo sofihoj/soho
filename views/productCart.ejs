@@ -12,63 +12,63 @@
 
 <body>
     <%- include('./partials/header.ejs')%>
-    <main>
-        <%- include('./partials/sidebar.ejs')%>
-    </main>
-    <div class="menu">
-        <div class="enlaces">
-            <div class="contLine">
-                <div class="iconos"><i class="fas fa-cart-shopping"></i></div>
-                <div class="iconos"><i class="fas fa-light fa-location-arrow"></i></div>
-                <div class="iconos"><i class="fas fa-regular fa-credit-card"></i></div>
-                <div class="iconos"><i class="fas fa-duotone fa-check"></i></div>
+        <main>
+            <%- include('./partials/sidebar.ejs')%>
+            <div class="menu">
+                <div class="enlaces">
+                    <div class="contLine">
+                        <div class="iconos"><i class="fas fa-cart-shopping"></i></div>
+                        <div class="iconos"><i class="fas fa-light fa-location-arrow"></i></div>
+                        <div class="iconos"><i class="fas fa-regular fa-credit-card"></i></div>
+                        <div class="iconos"><i class="fas fa-duotone fa-check"></i></div>
+                    </div>
+                </div>
+                <div class="cajas">
+                    <div class="caja">
+                        <div class="descripcion">DESCRIPCION DEL PRODUCTO</div>
+                        <div class="descripcion">DESCRIPCION DEL PRODUCTO</div>
+                        <div class="descripcion">DESCRIPCION DEL PRODUCTO</div>
+                    </div>
+                    <div class="caja">
+                        <div class="suma">SUMA DE PRODUCTOS</div>
+                        <div class="total">TOTAL</div>
+                        <div class="btnContinuar">CONTINUAR</div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="cajas">
-            <div class="caja">
-                <div class="descripcion">DESCRIPCION DEL PRODUCTO</div>
-                <div class="descripcion">DESCRIPCION DEL PRODUCTO</div>
-                <div class="descripcion">DESCRIPCION DEL PRODUCTO</div>
-            </div>
-            <div class="caja">
-                <div class="suma">SUMA DE PRODUCTOS</div>
-                <div class="total">TOTAL</div>
-                <div class="btnContinuar">CONTINUAR</div>
-            </div>
-        </div>
-    </div>
-    <%- include('./partials/footer.ejs')%>
-    <script>
-        /*Set ancho de sidebar*/
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "300px";
-            document.getElementByTagName("body").style.marginLeft = "300px";
-        }
+        </main>
+        <%- include('./partials/footer.ejs')%>
+            <script>
+                /*Set ancho de sidebar*/
+                function openNav() {
+                    document.getElementById("mySidebar").style.width = "300px";
+                    document.getElementByTagName("body").style.marginLeft = "300px";
+                }
 
-        /*Set posición de sidebar*/
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
+                /*Set posición de sidebar*/
+                function closeNav() {
+                    document.getElementById("mySidebar").style.width = "0";
+                    document.getElementById("main").style.marginLeft = "0";
+                }
 
-        //Obtener del menú "Categorías" y su submenú
-        const categoriasMenu = document.querySelector('.menu-item');
-        const submenu = document.querySelector('.submenu');
+                //Obtener del menú "Categorías" y su submenú
+                const categoriasMenu = document.querySelector('.menu-item');
+                const submenu = document.querySelector('.submenu');
 
-        //Agrega un evento de clic al elemento del menú "Categorías"
-        categoriasMenu.addEventListener('click', function () {
-            // Alternar la clase "collapsed" en el elemento del menú "Categorías"
-            categoriasMenu.classList.toggle('collapsed');
-            // Mostrar u ocultar el submenú
-            submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
-        });
+                //Agrega un evento de clic al elemento del menú "Categorías"
+                categoriasMenu.addEventListener('click', function () {
+                    // Alternar la clase "collapsed" en el elemento del menú "Categorías"
+                    categoriasMenu.classList.toggle('collapsed');
+                    // Mostrar u ocultar el submenú
+                    submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
+                });
 
-        categoriasMenu.addEventListener('click', function () {
-            // Alternar la clase "open" en el elemento del menú "Categorías"
-            categoriasMenu.classList.toggle('open');
-            submenu.style.display = categoriasMenu.classList.contains('open') ? 'block' : 'none';
-        });
-    </script>
+                categoriasMenu.addEventListener('click', function () {
+                    // Alternar la clase "open" en el elemento del menú "Categorías"
+                    categoriasMenu.classList.toggle('open');
+                    submenu.style.display = categoriasMenu.classList.contains('open') ? 'block' : 'none';
+                });
+            </script>
 </body>
 
 </html>

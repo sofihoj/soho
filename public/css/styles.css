@@ -626,15 +626,18 @@ aside .top-sidebar {
 .dark-mode-body .header-title,
 .dark-mode-body .fa-cart-shopping,
 .dark-mode-body .fa-search,
+.dark-mode-body .fa-bars,
 .dark-mode-body .info-producto,
 .dark-mode-body .description,
 .dark-mode-body .productDescription {
     color: #EBEBEB;
 }
 
-
-
+.dark-mode-body .form {
+    background-color: #9d8b82;
+}
 /*-----------*/
+
 @media (max-width: 480px) {
     .bottom-menu {
         flex-direction: column;
@@ -682,6 +685,20 @@ aside .top-sidebar {
 
     .logo {
         max-width: 80px;
+    }
+
+    .top-header .dark-mode, .top-header .language {
+        display: none;
+    }
+
+    .dark-mode {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        text-transform: uppercase;
+        background-color:#9F967F;
+        margin: 0 1em;
     }
 
 }
