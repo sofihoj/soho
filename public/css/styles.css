@@ -496,6 +496,23 @@ aside .top-sidebar {
     font-size: 15px;
 }
 
+/* SWAL STYLES*/
+.swal2-confirm {
+    background-color: #9A6C6C;
+    color: #EBEBEB;
+    border-radius: 5px;
+}
+
+.swal2-modal {
+    border: 5px solid #967D71;
+    border-radius: 10px;
+    background-color: #EBEBEB;
+}
+
+.swal2-content {
+    color: #47453C;
+}
+/*--------------*/
 @media (max-width: 480px) {
     .bottom-menu {
         flex-direction: column;

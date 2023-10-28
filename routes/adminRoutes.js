@@ -31,6 +31,6 @@ router.post('/create', upload.single('imagen'), validationsProducts, adminContro
 // router.get('/detail/:id', adminController.show);
 router.get('/edit/:nombre', adminController.edit);
 router.put('/edit/:nombre', upload.single('imagen'), validationsProductEdit, adminController.update)
-router.get('/delete/:nombre', adminController.delete);
+router.delete('/delete/:nombre', adminController.delete);
 
 module.exports = router;

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/admin.css">
@@ -73,6 +77,58 @@
             // Alternar la clase "open" en el elemento del menú "Categorías"
             categoriasMenu.classList.toggle('open');
             });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const elementosEliminar = document.querySelectorAll('a[href^="/administrar/delete/"]');
+            elementosEliminar.forEach(elemento => {
+                elemento.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const urlBorrar = elemento.getAttribute('href');
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: 'Una vez eliminado, no podrás recuperar este producto.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#9A6C6C',
+                        cancelButtonColor: '#47453C',
+                        confirmButtonText: 'Sí, eliminarlo',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Realizar la solicitud para eliminar el producto
+                            fetch(urlBorrar, {
+                                method: 'DELETE'
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.json();
+                                }
+                                throw new Error('No se pudo borrar el producto.');
+                            })
+                            .then(data => {
+                                Swal.fire({
+                                    title: '¡Eliminado!',
+                                    text: 'El producto ha sido eliminado correctamente.',
+                                    confirmButtonColor: '#9A6C6C',
+                                    icon: 'success'
+                                }).then(() => {
+                                    // Redirigir a la página de administración después de eliminar
+                                    window.location.href = '/administrar';
+                                });
+                            })
+                            .catch(error => {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: error.message,
+                                    icon: 'error'
+                                });
+                            });
+                        }
+                    });
+                });
+            });
+        });
     </script>
 </body>
 </html>

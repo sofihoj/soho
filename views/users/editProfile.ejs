@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bisne macrame | Edit profile</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/login.css">
         <link rel="stylesheet" href="/css/signup.css">
@@ -72,7 +74,7 @@
                     <button type="submit">Actualizar datos</button>
                     <!-- <a href="/users/profile"><button>Volver</button></a> -->
                 </form>
-                <a href="/users/profile"><button>Volver</button></a>
+                <a href="/users/profile" id="volver"><button>Volver</button></a>
                 <form class="form" action="/users/profile/edit-password?_method=PUT" method="POST">
                     <p id="change-password">Quieres cambiar la contrseña?</p>
                     <div class="input-box">
@@ -101,13 +103,121 @@
                     </div>
                     <button type="submit">Cambiar contraseña</button>
                 </form>
-                <form class="form" action="/users/profile/delete?_method=DELETE" method="POST">
-                    <button type="submit" style="background-color: red">Eliminar cuenta</button>
+                <!-- <form class="form" id="deleteForm" action="/users/profile/delete?_method=DELETE" method="POST"> -->
+                <form class="form" id="deleteForm" method="POST">
+                    <button type="submit" id="deleteAccountBtn" style="background-color: red" >Eliminar cuenta</button>
                 </form>
             </div>
         </main>
         <%- include('../partials/footer.ejs')%>
-        <script src="/js/editProfile-validations.js"></script>
+        <script>
+            // Variable para rastrear si se han realizado cambios en el formulario
+            let cambiosRealizados = false;
+
+            // Función para mostrar el modal de advertencia
+            function mostrarModalAdvertencia(event) {
+                // Verificar si se han realizado cambios en el formulario
+                if (cambiosRealizados) {
+                    event.preventDefault(); // Evitar que se redirija automáticamente
+                    Swal.fire({
+                        title: 'Cambios no guardados',
+                        text: 'Si vuelves al menú, perderás los cambios realizados. ¿Estás seguro?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#9A6C6C',
+                        cancelButtonColor: '#47453C',
+                        confirmButtonText: 'Sí, volver sin guardar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Si el usuario confirma, se redirige
+                            window.location.href = '/users/profile';
+                        }
+                    });
+                }
+            }
+            document.addEventListener("DOMContentLoaded", function() {
+                // Obtener el enlace de volver
+                const enlaceVolver = document.getElementById('volver');
+                // Agregar un event listener al enlace de volver
+                enlaceVolver.addEventListener('click', mostrarModalAdvertencia);
+
+                // Agregar event listeners a los elementos del formulario para rastrear cambios
+                const elementosFormulario = document.querySelectorAll('input, select');
+                elementosFormulario.forEach(elemento => {
+                    elemento.addEventListener('input', function() {
+                        cambiosRealizados = true;
+                    });
+                });
+            });
+
+        </script>
+        <script>
+            document.getElementById("deleteAccountBtn").addEventListener("click", function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: 'Esta acción es irreversible. ¿Estás seguro de que quieres eliminar tu cuenta?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#9A6C6C',
+                    cancelButtonColor: '#47453C',
+                    confirmButtonText: 'Sí, eliminar cuenta',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Cambiar el atributo action del formulario
+                        document.getElementById("deleteForm").action = "/users/profile/delete?_method=DELETE";
+
+                        // Enviar el formulario
+                        document.getElementById("deleteForm").submit();
+
+                        Swal.fire({
+                            title: 'Cuenta eliminada con éxito',
+                            text: 'Serás redirigido al inicio',
+                            icon: 'success',
+                            confirmButtonColor: '#9A6C6C',
+                            timer: 5000
+                        }).then(() => {
+                            // Redirigir al usuario a la página de inicio después de hacer clic en OK
+                            window.location.href = '/';
+                        });
+                    }
+                });
+            });
+
+            document.getElementById("deleteForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+                fetch(this.action, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: 'Cuenta eliminada con éxito',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            confirmButtonColor: '#9A6C6C',
+                            html: '<button id="backBtn" class="swal2-confirm swal2-styled">Volver a inicio</button>'
+                        });
+
+                        // Agregar un evento click al botón "Volver a inicio"
+                        document.getElementById("backBtn").addEventListener("click", function() {
+                            window.location.href = '/'; // Redirigir al usuario a la página de inicio
+                        });
+                    } else {
+                        Swal.fire('Error', 'No se pudo eliminar la cuenta', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire('Error', 'Hubo un problema al eliminar la cuenta', 'error');
+                });
+            });
+        </script>
+
         <script>
             /*Set ancho de sidebar*/
             function openNav() {
@@ -139,5 +249,6 @@
                 submenu.style.display = categoriasMenu.classList.contains('open') ? 'block' : 'none';
                 });
         </script>
+        <script src="/js/editProfile-validations.js"></script>
     </body>
 </html>

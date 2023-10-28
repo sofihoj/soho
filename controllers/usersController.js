@@ -214,9 +214,9 @@ const usersController = {
             }, force: true
         })
         .then(req.session.destroy())
-        .then(() => {
-            return res.redirect('/')
-        })
+        // .then(() => {
+        //     return res.redirect('/')
+        // })
         .catch(error => res.send(error))
     },
     logout: (req, res) => {

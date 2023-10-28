@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/admin.css">
@@ -102,6 +104,47 @@
             // Alternar la clase "open" en el elemento del menú "Categorías"
             categoriasMenu.classList.toggle('open');
             });
+    </script>
+    <script>
+        // Variable para rastrear si se han realizado cambios en el formulario
+        let cambiosRealizados = false;
+    
+        // Función para mostrar el modal de advertencia
+        function mostrarModalAdvertencia(event) {
+            // Verificar si se han realizado cambios en el formulario
+            if (cambiosRealizados) {
+                event.preventDefault(); // Evitar que se redirija automáticamente
+                Swal.fire({
+                    title: 'Cambios no guardados',
+                    text: 'Si vuelves al menú, perderás los cambios realizados. ¿Estás seguro?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#9A6C6C',
+                    cancelButtonColor: '#47453C',
+                    confirmButtonText: 'Sí, volver sin guardar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Si el usuario confirma, se redirige
+                        window.location.href = '/administrar';
+                    }
+                });
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtener el enlace de volver
+            const enlaceVolver = document.getElementById('volver');
+            // Agregar un event listener al enlace de volver
+            enlaceVolver.addEventListener('click', mostrarModalAdvertencia);
+
+            // Agregar event listeners a los elementos del formulario para rastrear cambios
+            const elementosFormulario = document.querySelectorAll('input, select');
+            elementosFormulario.forEach(elemento => {
+                elemento.addEventListener('input', function() {
+                    cambiosRealizados = true;
+                });
+            });
+        });
     </script>
     <script src="/js/editProduct-validations.js"></script>
 </body>

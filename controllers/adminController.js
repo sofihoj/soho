@@ -84,9 +84,14 @@ const controller = {
         const nombre = req.params.nombre;
         db.Producto.destroy({ where: { nombre }, force: true })
         .then(() => {
-            return res.redirect('/administrar')
+            // return res.redirect('/administrar')
+            return res.status(200).json({ message: 'Producto eliminado correctamente.'});
         })
-        .catch(error => res.send(error))
+        // .catch(error => res.send(error))
+        .catch(error => {
+            console.error(error);
+            return res.status(500).json({ message: 'Error al intentar eliminar el producto.' });
+        });
     },
     edit: async (req, res) => {
         try {
