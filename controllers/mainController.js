@@ -1,11 +1,10 @@
 const db = require('../database/models');
+const sequelize = db.sequelize;
+const { Op } = require("sequelize");
 
 const controller = {
     index: (req, res) => {
         res.render('index')
-    },
-    newProducts: (req, res) => {
-        res.render('newProducts')
     },
     productCart: (req, res) => {
         res.render('productCart')
@@ -59,6 +58,25 @@ const controller = {
                 console.error(error);
                 res.status(500).send('Error interno del servidor');
             });
+    },
+    search: (req, res) => {
+        const searchProduct = req.body.search;
+        db.Producto.findAll({
+            include: ['categoria'],
+            where: { nombre: {[Op.like]: "%"+searchProduct+"%"}}
+        })
+        .then((productos)=>{
+            if (productos.length > 0){
+                res.render('search', {productos, formatearEspacio} )
+            } else {
+                const sinResultados = `No se encontraron resultados de tu búsqueda "${searchProduct}"`;
+                res.render('search', {productos, formatearEspacio, sinResultados} )
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).send('Error interno del servidor');
+        })
     }
 }
 

@@ -3,6 +3,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookies = require('cookie-parser');
+const cors = require('cors');
 
 const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
@@ -12,6 +13,7 @@ const restrictToAdmin = require('./middlewares/restrictAdminMiddleware');
 const categoriasMiddleware = require('./middlewares/categoriasMiddleware');
 
 const app = express();
+app.use(cors());
 
 require('dotenv').config();
 const PORT = parseInt(process.env.PORT);

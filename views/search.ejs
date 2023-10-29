@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bisne macrame | HOME</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/css/categories.css">
+    </head>
+    <body>
+        <%- include('./partials/header.ejs')%>
+        <main>
+            <%- include('./partials/sidebar.ejs')%>
+            <section class="main-header">
+                <p>Resultado de la búsqueda</p>
+            </section>
+            <div class="productos">
+                <% if (productos.length > 0) { %>
+                <% productos.forEach(producto => { %>
+                    <a href="/products/<%= formatearEspacio(producto.categoria.categoria) %>/<%= formatearEspacio(producto.nombre) %>">
+                        <div class="card-producto">
+                            <div class="photo">
+                                <img src="/img/<%= formatearEspacio(producto.imagen) %>" alt="<%= producto.nombre %>">                        </div>
+                            <div class="info-producto">
+                                <p class="nombre-producto">
+                                    <%= producto.nombre.toUpperCase() %>
+                                </p>
+                                <p class="precio-producto">$<%= producto.precio %>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                  <% }); %>
+                  <% } else { %>
+                    <div class="noResults">
+                        <p><%= sinResultados %></p>
+                        <a href="/"><button id="noResults">Volver al inicio</button></a>
+                    </div>
+                <% } %>
+            </div>
+        </main>
+        <%- include('./partials/footer.ejs')%>
+        <script>
+            /*Set ancho de sidebar*/
+            function openNav() {
+                document.getElementById("mySidebar").style.width = "300px";
+                document.getElementByTagName("body").style.marginLeft = "300px";
+            }
+
+            /*Set posición de sidebar*/
+            function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            }
+
+            //Obtener del menú "Categorías" y su submenú
+            const categoriasMenu = document.querySelector('.menu-item');
+            const submenu = document.querySelector('.submenu');
+
+            //Agrega un evento de clic al elemento del menú "Categorías"
+            categoriasMenu.addEventListener('click', function() {
+                // Alternar la clase "collapsed" en el elemento del menú "Categorías"
+                categoriasMenu.classList.toggle('collapsed');
+                // Mostrar u ocultar el submenú
+                submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
+            });
+
+            categoriasMenu.addEventListener('click', function() {
+                // Alternar la clase "open" en el elemento del menú "Categorías"
+                categoriasMenu.classList.toggle('open');
+                submenu.style.display = categoriasMenu.classList.contains('open') ? 'block' : 'none';
+                });
+        </script>
+    </body>
+</html>

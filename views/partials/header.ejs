@@ -3,41 +3,56 @@
         <p class="language"></p>
         <div class="login">
             <% if (locals.isLogged) { %>
-                <p><span>Hola <a href="/users/profile"><%= locals.userLogged.nombre %></a>!</span>|<span><a href="/users/logout">Log out</a></span></p>
-            <% } else { %>
-                <p><span><a href="/users/login">Login</a></span>|<span><a href="/users/signup">Sign up</a></span></p>
-            <% } %>
+                <p><span>Hola <a href="/users/profile">
+                            <%= locals.userLogged.nombre %>
+                        </a>!</span>|<span><a href="/users/logout">Log out</a></span></p>
+                <% } else { %>
+                    <p><span><a href="/users/login">Login</a></span>|<span><a href="/users/signup">Sign up</a></span>
+                    </p>
+                    <% } %>
         </div>
-    <div class="dark-mode">
-        <p>Modo oscuro</p>
-        <label class="toggle toggle-header" onclick="toggleDarkMode('header')">
-            <input type="checkbox" onclick="toggleDarkMode('header')">
-            <span class="slider"></span>
-            <span class="labels" data-on="ON" data-off="OFF"></span>
-        </label>
-    </div>
+        <div class="dark-mode">
+            <p>Modo oscuro</p>
+            <label class="toggle toggle-header" onclick="toggleDarkMode('header')">
+                <input type="checkbox" onclick="toggleDarkMode('header')">
+                <span class="slider"></span>
+                <span class="labels" data-on="ON" data-off="OFF"></span>
+            </label>
+        </div>
     </div>
     <div class="medium-header">
-        <i class="fas fa-search"></i>
+        <i class="fas fa-search" onclick="openSearch()"></i>
         <i class="fas fa-bars" onclick="openNav()"></i>
         <div class="logo">
             <a href="/"><img src="/img/logo.jpg" alt="Logo BISNE"></a>
         </div>
         <a href="/productCart"><i class="fas fa-cart-shopping"></i></a>
     </div>
+    <div id="myOverlay" class="overlay">
+        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
+        <div class="overlay-content">
+          <form action="/search" method="POST">
+            <input type="text" placeholder="Buscar.." id="searchTerm" name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+    </div>
     <nav>
         <ul>
             <li><a class="header-title" href="/">Inicio</a></li>
-            <li class="dropdown"><a href="#" class="header-title" class="dropbtn">Categorías <i class="fas fa-chevron-down"></i></a>
+            <li class="dropdown"><a href="#" class="header-title" class="dropbtn">Categorías <i
+                        class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-content">
                     <!-- <a href="/categories/tapices">Tapices</a>
                     <a href="/categories/espejos">Espejos</a>
                     <a href="/categories/cuelga-macetas">Cuelga macetas</a>
                     <a href="/categories/sujeta-cortinas">Sujeta cortinas</a>
                     <a href="/categories/varios">Varios</a> -->
-                    <% categorias.forEach(categoria => { %>
-                        <a class="header-title" href="/categories/<%= categoria.categoria %>"><%= categoria.categoria %></a>
-                    <% }); %>
+                    <% categorias.forEach(categoria=> { %>
+                        <a class="header-title" href="/categories/<%= categoria.categoria %>">
+                            <%= categoria.categoria %>
+                        </a>
+                        <% }); %>
                 </div>
             </li>
             <li><a class="header-title" href="#">Sobre nosotros</a></li>
