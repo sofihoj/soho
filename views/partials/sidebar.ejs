@@ -1,7 +1,11 @@
 <aside id="mySidebar">
     <div class="top-sidebar">
         <div class="search-input">
-            <input type="text" placeholder="Buscar">
+            <!-- <input type="text" placeholder="Buscar"> -->
+            <form action="/search" method="POST">
+                <input type="text" placeholder="Buscar.." id="searchTerm" name="search">
+                <button type="submit">OK</button>
+              </form>
         </div>
         <div class="close-icon">
             <i class="fas fa-xmark" onclick="closeNav()"></i>
