@@ -16,6 +16,28 @@
         <div class="main-header">
             <p><%= categoria.categoria %></p>
         </div>
+        <div class="form-order">
+            <form class="orderProducts" method="GET" action="/categories/<%= categoriaSeleccionada %>">
+                <section>
+                    <label for="sort">Ordenar por:</label>
+                    <select name="sort" id="sort">
+                        <option value="" disabled selected>- Seleccionar -</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="precio">Precio</option>
+                    </select>
+                </section>
+
+                <section>
+                    <label for="order">Orden:</label>
+                <select name="order" id="order">
+                    <option value="" disabled selected>- Seleccionar -</option>
+                    <option value="asc">Ascendente</option>
+                    <option value="desc">Descendente</option>
+                </select>
+                </section>
+                <button type="submit">Ordenar</button>
+            </form>
+        </div>
         <div class="productos">
             <% producto.forEach(producto => { %>
                 <a href="/products/<%= formatearEspacio(categoria.categoria) %>/<%= formatearEspacio(producto.nombre) %>">

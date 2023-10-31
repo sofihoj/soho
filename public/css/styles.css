@@ -629,7 +629,9 @@ aside .top-sidebar {
 .dark-mode-body .fa-bars,
 .dark-mode-body .info-producto,
 .dark-mode-body .description,
-.dark-mode-body .productDescription {
+.dark-mode-body .productDescription,
+.dark-mode-body .form-order,
+.dark-mode-body .pagination span {
     color: #EBEBEB;
 }
 
@@ -727,6 +729,56 @@ aside .top-sidebar {
     opacity: 0.9;
 }
 
+.disabled {
+    pointer-events: none; /* Evita que se haga clic en el botón */
+    opacity: 0.6; /* Puedes ajustar la opacidad para que parezca deshabilitado visualmente */
+}
+
+.pagination {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.pagination span {
+    color: #9A6C6C;
+}
+
+.paginationBtn,
+.orderProducts button {
+    background-color: #9A6C6C;
+    color: #ebebeb;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+.paginationBtn:hover,
+.orderProducts button:hover {
+    font-weight: bold;
+    transform: scale(1.01);
+    opacity: 0.9;
+}
+
+.form-order {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 1em;
+    color: #9A6C6C;
+}
+
+.orderProducts section{
+    display: flex;
+    margin: 0.5em 0;
+}
+
+.orderProducts select {
+    margin-left: 0.5em;
+}
+
+
 @media (max-width: 480px) {
     .bottom-menu {
         flex-direction: column;
@@ -788,6 +840,10 @@ aside .top-sidebar {
         text-transform: uppercase;
         background-color:#9F967F;
         margin: 0 1em;
+    }
+
+    .paginationBtn {
+        margin: 0 0.2em;
     }
 
 }

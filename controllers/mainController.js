@@ -38,14 +38,44 @@ const controller = {
                 }
             })
     },
+    allProducts: async (req, res) => {
+        const page = req.query.page || 1; // Obtener el número de página de la consulta de la URL o establecer el valor predeterminado como 1
+        const productsPerPage = 16; // Número de productos por página
+
+        try {
+            const totalProducts = await db.Producto.count(); // Obtener el número total de productos
+            const totalPages = Math.ceil(totalProducts / productsPerPage); // Calcular el número total de páginas
+            const offset = (page - 1) * productsPerPage; // Calcular el valor de offset para la consulta
+
+            const sortField = req.query.sort || 'nombre';
+            const sortOrder = req.query.order || 'asc';
+
+            const productos = await db.Producto.findAll({
+                include: ['categoria'],
+                offset: offset,
+                limit: productsPerPage,
+                order: [[sortField, sortOrder]]
+            });
+            res.render('allProducts', { productos, formatear, formatearEspacio, currentPage: Number(page), totalPages });
+        } catch (error) {
+            console.error('Error al obtener productos de la base de datos:', error);
+            res.status(500).send('Error interno del servidor');
+        }
+    },
     categories: (req, res) => {
         const categoriaSeleccionada = req.params.categoria;
+        const sortField = req.query.sort || 'nombre';
+        const sortOrder = req.query.order || 'asc';
 
         db.Categoria.findOne({
             where: {
                 categoria: formatearGuion(categoriaSeleccionada),
             },
-            include: ['productos'],
+            include: [{
+                model: db.Producto,
+                as: 'productos',
+            }],
+            order: [[{ model: db.Producto, as: 'productos' }, sortField, sortOrder]],
         })
             .then(categoria => {
                 if (categoria) {
