@@ -38,7 +38,7 @@
 }
 
 .cajas .caja {
-    padding: 2rem;
+    padding: 2em;
     width: 50vw;
 }
 
@@ -46,20 +46,55 @@
     width: 100%;
     height: 15vh;
     margin-bottom: 1.5rem;
-    display: flex;
-    justify-content: center;
     align-items: center;
     background-color: #d9d9d9;
+    display: flex;
+    justify-content: space-around;
+}
+
+.cartImg {
+    height: 11vh;
+    min-width: 5.1vw;
+    margin-right: 1em;
+}
+
+.cartPrecio {
+    flex-grow: 1;
+}
+
+.descripcion p {
+    margin: 0 2em;
+}
+
+.caja .descripcion .cartImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fa-circle-xmark {
+    color: red;
+    margin-left: 1em;
+    cursor: pointer;
 }
 
 .caja .suma {
     width: 100%;
-    height: 25vh;
+    min-height: 25vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
     background-color: #d9d9d9;
     margin-bottom: 0.3rem;
+}
+
+.productTotal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.productTotal p {
+    margin: 1em;
 }
 
 .caja .total {
@@ -68,6 +103,7 @@
     height: 8vh;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -83,7 +119,17 @@
     color: white;
 }
 
-@media (max-width: 480px) {
+.cantidad-container {
+    margin-right: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.cantidad-container span {
+    margin: 0 0.25em;
+}
+
+@media (max-width: 768px) {
 
     .enlaces .contLine {
         gap: 1.5rem;
@@ -100,23 +146,62 @@
     }
 
     .cajas .caja {
-        width: 100vw;
+        width: 95vw;
         padding: 0;
     }
 
-    .caja .descripcion {
-        width: 80%;
+    .caja .descripcion,
+    .caja .suma,
+    .caja .total,
+    .caja .btnContinuar  {
+        width: 85%;
     }
 
-    .caja .suma {
-        width: 80%;
+}
+
+@media (max-width: 480px) {
+    .product-box {
+        display: flex;
+        flex-direction: column;
     }
 
-    .caja .total {
-        width: 80%;
+    .descripcion {
+        font-size: 0.9em;
     }
 
-    .caja .btnContinuar {
-        width: 80%;
+    .descripcion p {
+        margin: 0 0.25em;
+    }
+
+    .fa-circle-xmark {
+        margin: 0 0.5em;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 980px) {
+    /* .cajas .caja {
+        padding: 1em
+    } */
+
+    /* div.caja.product-box {
+        padding: 1em 0.5em 1em 1em;
+    }
+
+    div.caja.totals-box {
+        padding: 1em 1em 1em 0.5em;
+    } */
+    
+    .descripcion p {
+        margin: 0 0.6em;
+    }
+
+    .cartImg {
+        min-height: 7.5vw;
+    }
+}
+
+@media (min-width: 981px) {
+    .cajas .caja {
+        padding: 2em;
     }
 }

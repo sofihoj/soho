@@ -6,7 +6,7 @@ const controller = {
     index: (req, res) => {
         res.render('index')
     },
-    productCart: (req, res) => {
+    productCart: async (req, res) => {
         res.render('productCart')
     },
     productDetail: (req, res) => {
@@ -90,7 +90,7 @@ const controller = {
             });
     },
     search: (req, res) => {
-        const searchProduct = req.body.search;
+        const searchProduct = req.query.search;
         db.Producto.findAll({
             include: ['categoria'],
             where: { nombre: {[Op.like]: "%"+searchProduct+"%"}}
@@ -107,7 +107,7 @@ const controller = {
             console.error(error);
             res.status(500).send('Error interno del servidor');
         })
-    }
+    },
 }
 
 function formatear(categoria) {

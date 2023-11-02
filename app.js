@@ -8,6 +8,9 @@ const cors = require('cors');
 const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+
+const productAPIRoutes = require('./routes/api/productsAPIRoutes');
+
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 const restrictToAdmin = require('./middlewares/restrictAdminMiddleware');
 const categoriasMiddleware = require('./middlewares/categoriasMiddleware');
@@ -38,6 +41,8 @@ app.use(methodOverride('_method'));
 app.use('/', mainRoutes);
 app.use('/administrar', restrictToAdmin, adminRoutes);
 app.use('/users', usersRoutes);
+
+app.use('/api/productos', productAPIRoutes);
 
 
 app.use((req,res,next)=>{

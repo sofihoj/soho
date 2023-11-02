@@ -33,7 +33,7 @@
                             <h2><%= producto.tamanio ? "Tamaño: " + producto.tamanio.diametro + " cm": ''  %></h2>
                             <div class="cantidadProductos">
                                 <button id="menos">-</button>
-                                <input type="number" value="1">
+                                <input id="cantidad" type="number" value="1">
                                 <button id="mas">+</button>
                             </div>
                         </section>
@@ -44,35 +44,29 @@
         </main>
         <%- include('./partials/footer.ejs')%>
         <script>
-            /*Set ancho de sidebar*/
-            function openNav() {
-                document.getElementById("mySidebar").style.width = "300px";
-                document.getElementByTagName("body").style.marginLeft = "300px";
-            }
+            const menosButton = document.getElementById("menos");
+            const masButton = document.getElementById("mas");
+            const cantidadInput = document.getElementById("cantidad");
 
-            /*Set posición de sidebar*/
-            function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-            }
-
-            //Obtener del menú "Categorías" y su submenú
-            const categoriasMenu = document.querySelector('.menu-item');
-            const submenu = document.querySelector('.submenu');
-
-            //Agrega un evento de clic al elemento del menú "Categorías"
-            categoriasMenu.addEventListener('click', function() {
-                // Alternar la clase "collapsed" en el elemento del menú "Categorías"
-                categoriasMenu.classList.toggle('collapsed');
-                // Mostrar u ocultar el submenú
-                submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
+            masButton.addEventListener("click", function() {
+                let cantidad = parseInt(cantidadInput.value);
+                cantidadInput.value = cantidad + 1;
+                menosButton.disabled = false;
             });
 
-            categoriasMenu.addEventListener('click', function() {
-                // Alternar la clase "open" en el elemento del menú "Categorías"
-                categoriasMenu.classList.toggle('open');
-                submenu.style.display = categoriasMenu.classList.contains('open') ? 'block' : 'none';
-                });
+            menosButton.addEventListener("click", function() {
+                let cantidad = parseInt(cantidadInput.value);
+
+                // Decrementa la cantidad solo si es mayor que 1
+                if (cantidad > 1) {
+                    cantidadInput.value = cantidad - 1;
+                }
+
+                // Deshabilita el botón de decremento si la cantidad es 1
+                if (cantidadInput.value == 1) {
+                    menosButton.disabled = true;
+                }
+            });
         </script>
     </body>
 </html>

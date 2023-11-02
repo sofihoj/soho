@@ -631,7 +631,8 @@ aside .top-sidebar {
 .dark-mode-body .description,
 .dark-mode-body .productDescription,
 .dark-mode-body .form-order,
-.dark-mode-body .pagination span {
+.dark-mode-body .pagination span,
+.dark-mode-body .img-popular p {
     color: #EBEBEB;
 }
 
@@ -662,6 +663,12 @@ aside .top-sidebar {
     margin: auto;
 }
 
+form.formSearch {
+    width: 90%;
+    display: contents;
+
+}
+
 /* Close button */
 .overlay .closebtn {
     position: absolute;
@@ -677,7 +684,7 @@ aside .top-sidebar {
 }
 
 /* Style the search field */
-.overlay input[type=text] {
+.overlay .formSearch input[type=text] {
     padding: 15px;
     font-size: 17px;
     border: none;
@@ -686,12 +693,12 @@ aside .top-sidebar {
     background: white;
 }
 
-.overlay input[type=text]:hover {
+.overlay.formSearch input[type=text]:hover {
     background: #f1f1f1;
 }
 
 /* Style the submit button */
-.overlay button {
+.overlay .formSearch button {
     float: left;
     width: 20%;
     padding: 15px;
@@ -701,7 +708,7 @@ aside .top-sidebar {
     cursor: pointer;
 }
 
-.overlay button:hover {
+.overlay .formSearch button:hover {
     background: #bbb;
 }
 /*-------------------*/
@@ -731,12 +738,12 @@ aside .top-sidebar {
 
 .disabled {
     pointer-events: none; /* Evita que se haga clic en el botón */
-    opacity: 0.6; /* Puedes ajustar la opacidad para que parezca deshabilitado visualmente */
+    opacity: 0.6; /* Ajuste de opacidad para que parezca deshabilitado visualmente */
 }
 
 .pagination {
     text-align: center;
-    margin-bottom: 2em;
+    margin: 2em;
 }
 
 .pagination span {
@@ -744,7 +751,8 @@ aside .top-sidebar {
 }
 
 .paginationBtn,
-.orderProducts button {
+.orderProducts button,
+.add-to-cart button {
     background-color: #9A6C6C;
     color: #ebebeb;
     border: none;
@@ -755,7 +763,8 @@ aside .top-sidebar {
 }
 
 .paginationBtn:hover,
-.orderProducts button:hover {
+.orderProducts button:hover,
+.add-to-cart button:hover {
     font-weight: bold;
     transform: scale(1.01);
     opacity: 0.9;
@@ -778,6 +787,117 @@ aside .top-sidebar {
     margin-left: 0.5em;
 }
 
+.product-position {
+    position: relative;
+}
+
+.add-to-cart {
+    margin-bottom: 1em;
+    position: absolute;
+    right: 23%;
+    bottom: -5%;
+}
+
+.add-to-cart button {
+    padding: 8px 10px;
+}
+
+/* SHOPPING CART */
+.carrito {
+    position: relative;
+}
+
+.carrito span{
+    position: absolute;
+    background-color: #9f967f;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    top: 60%;
+    right: -20px;
+}
+
+ .cartTab{
+    width: 400px;
+    background-color: #967D71;
+    color: #eee;
+    position: fixed;
+    top: 0;
+    right: -400px;
+    bottom: 0;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+    transition: .5s;
+    border: solid 1px #47453C;
+}
+body.showCart .cartTab{
+    right: 0;
+}
+body.showCart .containerCart{
+    transform: translateX(-250px);
+}
+.cartTab h1{
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+}
+.cartTab .btn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.cartTab button{
+    background-color: #47453C;
+    border: none;
+    /* font-family: Poppins;
+    font-weight: 500;
+    cursor: pointer;*/
+}
+.cartTab .close{
+    background-color: #eee;
+}
+.listCart .item img{
+    width: 100%;
+}
+.listCart .item{
+    display: grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+.listCart .quantity span{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    color: #555;
+    cursor: pointer;
+}
+.listCart .quantity span:nth-child(2){
+    background-color: transparent;
+    color: #eee;
+    cursor: auto;
+}
+.listCart .item:nth-child(even){
+    background-color: #eee1;
+}
+.listCart{
+    overflow: auto;
+}
+.listCart::-webkit-scrollbar{
+    width: 0;
+} 
+/*********************/
+
+.fa-search,
+.fa-cart-shopping {
+    cursor: pointer;
+}
 
 @media (max-width: 480px) {
     .bottom-menu {

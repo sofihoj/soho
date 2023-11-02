@@ -77,32 +77,6 @@
         </div>
     </main>
     <%- include('../partials/footer.ejs')%>
-    <script>
-        /*Set ancho de sidebar*/
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "300px";
-        }
-
-        /*Set posición de sidebar*/
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
-
-        //Obtener del menú "Categorías" y su submenú
-        const categoriasMenu = document.querySelector('.menu-item');
-        // const submenu = document.querySelector('.submenu');
-
-        //Agrega un evento de clic al elemento del menú "Categorías"
-        categoriasMenu.addEventListener('click', function() {
-            // Alternar la clase "collapsed" en el elemento del menú "Categorías"
-            categoriasMenu.classList.toggle('collapsed');
-        });
-
-        categoriasMenu.addEventListener('click', function() {
-            // Alternar la clase "open" en el elemento del menú "Categorías"
-            categoriasMenu.classList.toggle('open');
-            });
-    </script>
     <script src="/js/addProduct-validations.js"></script>
 </body>
 </html>

@@ -46,25 +46,5 @@
         </div>
     </main>
     <%- include('../partials/footer.ejs')%>
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "300px";
-            document.getElementByTagName("body").style.marginLeft = "300px";
-        }
-        function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-        }
-        const categoriasMenu = document.querySelector('.menu-item');
-        const submenu = document.querySelector('.submenu');
-        categoriasMenu.addEventListener('click', function() {
-            categoriasMenu.classList.toggle('collapsed');
-            submenu.style.display = submenu.style.display === 'none' ? 'block' : 'none';
-        });
-        categoriasMenu.addEventListener('click', function() {
-            categoriasMenu.classList.toggle('open');
-            submenu.style.display = categoriasMenu.classList.contains('open') ? 'block' : 'none';
-            });
-    </script>
 </body>
 </html>

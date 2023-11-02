@@ -26,12 +26,15 @@
         <div class="logo">
             <a href="/"><img src="/img/logo.jpg" alt="Logo BISNE"></a>
         </div>
-        <a href="/productCart"><i class="fas fa-cart-shopping"></i></a>
+        <a href="/productCart" class="carrito">
+            <i class="fas fa-cart-shopping cart-icon"></i>
+            <span id="cartCounter">0</span>
+        </a>
     </div>
     <div id="myOverlay" class="overlay">
         <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
         <div class="overlay-content">
-          <form action="/search" method="POST">
+          <form class="formSearch" action="/search" method="GET">
             <input type="text" placeholder="Buscar.." id="searchTerm" name="search">
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>

@@ -38,50 +38,27 @@
                 <button type="submit">Ordenar</button>
             </form>
         </div>
-        <div class="productos">
-            <% producto.forEach(producto => { %>
-                <a href="/products/<%= formatearEspacio(categoria.categoria) %>/<%= formatearEspacio(producto.nombre) %>">
-                    <div class="card-producto">
-                        <div class="photo">
-                            <img src="/img/<%= formatearEspacio(producto.imagen) %>" alt="<%= producto.nombre %>">                        </div>
-                        <div class="info-producto">
-                            <p class="nombre-producto">
-                                <%= producto.nombre.toUpperCase() %>
-                            </p>
-                            <p class="precio-producto">$<%= producto.precio %>
-                            </p>
+            <div class="productos">
+                <% producto.forEach(producto=> { %>
+                    <div class="product-position">
+                        <a href="/products/<%= formatearEspacio(categoria.categoria) %>/<%= formatearEspacio(producto.nombre) %>">
+                            <div class="card-producto">
+                                <div class="photo">
+                                    <img src="/img/<%= formatearEspacio(producto.imagen) %>" alt="<%= producto.nombre %>">
+                                </div>
+                                <div class="info-producto">
+                                    <p class="nombre-producto"><%= producto.nombre.toUpperCase() %></p>
+                                    <p class="precio-producto">$<%= producto.precio %></p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="add-to-cart">
+                            <button data-id="<%= producto.id %>" data-nombre="<%= producto.nombre %>" data-precio="<%= producto.precio %>" data-imagen="<%= producto.imagen %>" class="addToCartBtn addCart">Agregar al carrito</button>
                         </div>
                     </div>
-                </a>
-              <% }); %>
-        </div>
+                <% }); %>
+            </div>
     </main>
     <%- include('./partials/footer.ejs')%>
-    <script>
-        /*Set ancho de sidebar*/
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "300px";
-        }
-
-        /*Set posición de sidebar*/
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
-
-        //Obtener del menú "Categorías" y su submenú
-        const categoriasMenu = document.querySelector('.menu-item');
-        // const submenu = document.querySelector('.submenu');
-
-        //Agrega un evento de clic al elemento del menú "Categorías"
-        categoriasMenu.addEventListener('click', function() {
-            // Alternar la clase "collapsed" en el elemento del menú "Categorías"
-            categoriasMenu.classList.toggle('collapsed');
-        });
-
-        categoriasMenu.addEventListener('click', function() {
-            // Alternar la clase "open" en el elemento del menú "Categorías"
-            categoriasMenu.classList.toggle('open');
-            });
-    </script>
 </body>
 </html>

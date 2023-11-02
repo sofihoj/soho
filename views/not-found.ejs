@@ -19,21 +19,5 @@
                     </div>
             </main>
             <%- include('./partials/footer.ejs')%>
-                <script>
-                    function openNav() {
-                        document.getElementById("mySidebar").style.width = "300px";
-                    }
-                    function closeNav() {
-                        document.getElementById("mySidebar").style.width = "0";
-                    }
-                    const categoriasMenu = document.querySelector('.menu-item');
-                    categoriasMenu.addEventListener('click', function () {
-                        categoriasMenu.classList.toggle('collapsed');
-                    });
-                    categoriasMenu.addEventListener('click', function () {
-                        categoriasMenu.classList.toggle('open');
-                    });
-                </script>
-
     </body>
 </html>
