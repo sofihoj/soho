@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 const producto = { id, nombre, precio, imagen, cantidad: 1 };
                 cart.push(producto);
             }
+            const notificacion = event.target.closest('.product-position').querySelector('.notificacion');
+            notificacion.textContent = `Producto agregado al carrito`;
+            notificacion.style.display = 'block';
+
+            setTimeout(function () {
+                notificacion.style.display = 'none';
+            }, 1000);
 
             // Actualizar el carrito en el almacenamiento local
             localStorage.setItem('carrito', JSON.stringify(cart));
@@ -55,6 +62,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Llamar a la función para renderizar el carrito al cargar la página
     renderizarCarrito();
+    const carritoVacio = document.getElementById('carritoVacio');
+    if (cart.length === 0) {
+        carritoVacio.style.display = 'block';
+    } else {
+        carritoVacio.style.display = 'none';
+    }
 
     // Agregar un controlador de eventos para los íconos de eliminación
     carritoContainer.addEventListener("click", function (event) {

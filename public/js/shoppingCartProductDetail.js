@@ -55,6 +55,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Manejar el clic en el botón "AGREGAR AL CARRITO"
     addButton.addEventListener('click', function () {
         actualizarCantidadEnCarrito(cantidadAgregarInput.value);
-        alert('Producto agregado al carrito');
+        //alert('Producto agregado al carrito');
+        const notificacion = document.getElementById('notificationDetail');
+            notificacion.textContent = `Producto agregado al carrito.`;
+            notificacion.style.display = 'block';
+
+            setTimeout(function () {
+                notificacion.style.display = 'none';
+            }, 2000);
     });
 });
