@@ -18,7 +18,7 @@
             </section>
             <div class="cont">
                 <section class="photos">
-                    <div class="caja">
+                    <div class="caja-detail">
                         <img src="/img/<%= formatearEspacio(producto.imagen) %>" alt="">
                     </div>
                 </section>
@@ -33,40 +33,19 @@
                             <h2><%= producto.tamanio ? "Tamaño: " + producto.tamanio.diametro + " cm": ''  %></h2>
                             <div class="cantidadProductos">
                                 <button id="menos">-</button>
-                                <input id="cantidad" type="number" value="1">
+                                <input id="cantidadAgregar" type="number" value="1">
                                 <button id="mas">+</button>
                             </div>
                         </section>
-                        <button id="add">AGREGAR AL CARRITO</button>
+                        <button id="add" data-id="<%= producto.id %>"
+                            data-nombre="<%= producto.nombre %>"
+                            data-precio="<%= producto.precio %>"
+                            data-imagen="<%= producto.imagen %>">AGREGAR AL CARRITO</button>
                     </div>
                 </section>
             </div>
         </main>
         <%- include('./partials/footer.ejs')%>
-        <script>
-            const menosButton = document.getElementById("menos");
-            const masButton = document.getElementById("mas");
-            const cantidadInput = document.getElementById("cantidad");
-
-            masButton.addEventListener("click", function() {
-                let cantidad = parseInt(cantidadInput.value);
-                cantidadInput.value = cantidad + 1;
-                menosButton.disabled = false;
-            });
-
-            menosButton.addEventListener("click", function() {
-                let cantidad = parseInt(cantidadInput.value);
-
-                // Decrementa la cantidad solo si es mayor que 1
-                if (cantidad > 1) {
-                    cantidadInput.value = cantidad - 1;
-                }
-
-                // Deshabilita el botón de decremento si la cantidad es 1
-                if (cantidadInput.value == 1) {
-                    menosButton.disabled = true;
-                }
-            });
-        </script>
+        <script src="/js/shoppingCartProductDetail.js"></script>
     </body>
 </html>
