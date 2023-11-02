@@ -47,9 +47,7 @@
                 <div class="table-btn">
                     <% if (isLogged) { %>
                         <% if (userLogged.tipo_usuario_id === 2) { %>
-                            <a href="/users/profile/purchases" style="text-decoration: none;">
-                                <button type="submit">Finalizar compra</button>
-                            </a>
+                            <button type="submit">Finalizar compra</button>
                         <% } else { %>
                             <p>No puedes hacer compras como admin.</p>
                         <% } %>

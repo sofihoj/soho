@@ -2,7 +2,7 @@
     <div class="top-sidebar">
         <div class="search-input">
             <!-- <input type="text" placeholder="Buscar"> -->
-            <form action="/search" method="POST">
+            <form action="/search" method="GET">
                 <input type="text" placeholder="Buscar.." id="searchTerm" name="search">
                 <button type="submit">OK</button>
               </form>
@@ -13,14 +13,9 @@
     </div>
     <div class="main-sidebar">
         <ul class="main-menu">
-            <li><a href="/index">Inicio</a></li>
+            <li><a href="/">Inicio</a></li>
             <li class="menu-item"><a href="#">Categorías <span class="arrow">&#9658;</span></a>
                 <ul class="submenu">
-                    <!-- <li><a href="/categories/tapices">Tapices</a></li>
-                    <li><a href="/categories/espejos">Espejos </a></li>
-                    <li><a href="/categories/cuelgaMacetas">Cuelga macetas</a></li>
-                    <li><a href="/categories/sujetaCortinas">Sujeta cortinas</a></li>
-                    <li><a href="/categories/varios">Varios</a></li> -->
                     <% categorias.forEach(categoria => { %>
                         <li><a href="/categories/<%= categoria.categoria %>"><%= categoria.categoria %></a></li>
                     <% }); %>

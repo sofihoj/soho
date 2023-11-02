@@ -966,6 +966,10 @@ body.showCart .containerCart{
         margin: 0 0.2em;
     }
 
+    .fav-products {
+        gap: 5px; /* Espacio entre los artículos */
+    }
+
 }
 
 @media (max-width: 768px) {

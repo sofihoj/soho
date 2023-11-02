@@ -16,7 +16,7 @@
             <section class="main-header">
                 <p>Resultado de la búsqueda</p>
             </section>
-            <div class="productos">
+            <div class="productos" id="resultadosBusqueda">
                 <% if (productos.length > 0) { %>
                 <% productos.forEach(producto => { %>
                     <a href="/products/<%= formatearEspacio(producto.categoria.categoria) %>/<%= formatearEspacio(producto.nombre) %>">
