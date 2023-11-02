@@ -223,6 +223,10 @@ const usersController = {
         res.clearCookie('userEmail');
         req.session.destroy();
         return res.redirect('/');
+    },
+    purchases: async (req, res) => {
+        const isLogged = req.session.userLogged ? true : false;
+        res.render('users/purchases', { isLogged });
     }
 }
 

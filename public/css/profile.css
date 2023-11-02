@@ -72,6 +72,16 @@ a{
     text-align: center;
 }
 
+.compra-user {
+    display: flex;
+    justify-content: space-between;
+}
+
+#profile-purchase {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 5px;
+}
 @media only screen and (max-width: 767px)  {
     .profile-box {
         display: flex;

@@ -36,7 +36,17 @@
                                 <p>TOTAL</p>
                                 <p></p>
                             </div>
-                            <div class="btnContinuar">CONTINUAR</div>
+                            <% if (isLogged) { %>
+                                <% if (userLogged.tipo_usuario_id === 2) { %>
+                                    <a href="/users/profile/purchases" style="text-decoration: none;">
+                                        <div class="btnContinuar">CONTINUAR</div>
+                                    </a>
+                                <% } else { %>
+                                    <p class="no-purchase">No puedes hacer compras como admin.</p>
+                                <% } %>
+                            <% } else { %>
+                                <p class="no-purchase">Necesitas <a href="users/login" style="text-decoration: underline; font-weight: bold; color: #EBEBEB;">iniciar sesión</a> para continuar.</p>
+                            <% } %>
                         </div>
                     </div>
                 </div>

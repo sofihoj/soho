@@ -19,6 +19,7 @@ router.put('/profile/edit/', validationsEditProfile, usersController.update);
 router.put('/profile/edit-password/', authMiddleware, validationsPassword, usersController.changePassword);
 router.delete('/profile/delete', usersController.destroy)
 router.get('/logout', usersController.logout);
+router.get('/profile/purchases', authMiddleware, usersController.purchases);
 
 
 module.exports = router;

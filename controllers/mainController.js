@@ -7,7 +7,8 @@ const controller = {
         res.render('index')
     },
     productCart: async (req, res) => {
-        res.render('productCart')
+        const isLogged = req.session.userLogged ? true : false;
+        res.render('productCart', { isLogged });
     },
     productDetail: (req, res) => {
         const categoriaSeleccionada = req.params.category;

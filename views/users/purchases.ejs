@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bisne macrame | HOME</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+    <body>
+        <%- include('../partials/header.ejs')%>
+        <main>
+            <%- include('../partials/sidebar.ejs')%>
+            <section class="main-header">
+                <p>Mi compra</p>
+            </section>
+            <div class="admin-menu">
+                <div class="add-product">
+                    <div class="icon-add"><i class="fa-solid fa-bag-shopping fa-beat-fade"></i></div>
+                    <p>Compra nro. XX(id de compra)</p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio x unidad</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                              <tr>
+                                <td>producto.nombre</td>
+                                <td>producto.precio</td>
+                                <td>producto.cantidad</td>
+                                <td>producto.precio x producto.cantidad</td>
+                              </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total</td>
+                            <td>suma subtotales</td>
+                          </tr>
+                    </tfoot>
+                </table>
+                <div class="table-btn">
+                    <% if (isLogged) { %>
+                        <% if (userLogged.tipo_usuario_id === 2) { %>
+                            <a href="/users/profile/purchases" style="text-decoration: none;">
+                                <button type="submit">Finalizar compra</button>
+                            </a>
+                        <% } else { %>
+                            <p>No puedes hacer compras como admin.</p>
+                        <% } %>
+                    <% } else { %>
+                        <p>Necesitas iniciar sesión para continuar.</p>
+                    <% } %>
+                </div>
+            </div>
+        </main>
+        <%- include('../partials/footer.ejs')%>
+    </body>
+</html>

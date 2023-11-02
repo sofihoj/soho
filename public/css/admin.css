@@ -45,7 +45,8 @@ table {
     flex-direction: column;
 }
 
-thead {
+thead,
+tfoot {
     text-transform: uppercase;
     background-color: #9F967F;
     color: #ebebeb;
@@ -63,6 +64,10 @@ tr {
     padding: 10px 0;
 }
 
+tfoot tr {
+    justify-content: space-between;
+}
+
 tbody tr {
     border-bottom:#EBEBEB solid 1px;
 }
@@ -70,6 +75,11 @@ tbody tr {
 tr th:nth-child(2),
 tr td:nth-child(2) {
     margin-right: 150px;
+}
+
+tfoot tr th:nth-child(2),
+tfoot tr td:nth-child(2) {
+ margin-right: 0;
 }
 
 a {
@@ -216,6 +226,35 @@ th:nth-child(2),
 td:nth-child(1),
 td:nth-child(2) {
     width: 250px;
+}
+
+.admin-menu button {
+    background-color: #9A6C6C;
+    color: #ebebeb;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 15px 25px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.admin-menu button:hover {
+    font-weight: bold;
+    transform: scale(1.01);
+    opacity: 0.9;
+}
+
+.table-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.table-btn p {
+    background-color: red;
+    border-radius: 5px;
+    padding: 0.7em;
+    color: #ebebeb;
 }
 
 @media (max-width: 480px) {
