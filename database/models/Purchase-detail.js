@@ -2,7 +2,8 @@ module.exports = (sequelize, dataTypes) => {
     let alias = "DetalleCompra";
 
     let config = {
-        tableName: "detalle_compra"
+        tableName: "detalle_compra",
+        timestamps: false
     };
 
     let cols = {
@@ -22,10 +23,6 @@ module.exports = (sequelize, dataTypes) => {
         },
         cantidad: {
             type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false
-        },
-        subtotal: {
-            type: dataTypes.FLOAT(11, 3),
             allowNull: false
         },
     };

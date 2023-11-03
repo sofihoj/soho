@@ -8,6 +8,7 @@ const cors = require('cors');
 const mainRoutes = require('./routes/mainRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const purchasesRoutes = require('./routes/purchasesRoutes');
 
 const productAPIRoutes = require('./routes/api/productsAPIRoutes');
 
@@ -41,6 +42,7 @@ app.use(methodOverride('_method'));
 app.use('/', mainRoutes);
 app.use('/administrar', restrictToAdmin, adminRoutes);
 app.use('/users', usersRoutes);
+app.use('/', purchasesRoutes);
 
 app.use('/api/productos', productAPIRoutes);
 

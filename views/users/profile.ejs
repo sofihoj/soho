@@ -40,21 +40,29 @@
                     <a href="#"><p> </p></a>
                 </div>
                 <div class="profile-content" id="profile-purchase">
-                    <p>Hacé tu primera compra!</p>
-                    <div class="compra-user">
-                        <p>Nro compra (id compra)</p>
-                        <p>Fecha compra</p>
-                        <p>$Total compra</p>
-                    </div>
-                    <div class="compra-user">
-                        <p>Nro compra (id compra)</p>
-                        <p>Fecha compra</p>
-                        <p>$Total compra</p>
-                    </div>
+                    <% if (purchases.length > 0) { %>
+                        <% purchases.forEach(function(purchase) { %>
+                            <div class="compra-user">
+                                <p>Orden de compra: <%= purchase.id %></p>
+                                <p>Fecha: <%= formatDate(purchase.fecha_compra) %></p>
+                                <p>Total: $<%= purchase.precio_total %></p>
+                                <!-- <button style="font-size: 12px; height: fit-content;"><a href="/users/profile/purchase/< %= purchase.id %>">Ver detalle</a></button> -->
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>Todavía no has hecho ninguna compra.</p>
+                    <% } %>
                 </div>
             </section>
         </div>
     </main>
     <%- include('../partials/footer.ejs')%>
+    <script>
+        function formatDate(dateString) {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        const formattedDate = new Date(dateString).toLocaleDateString('es-AR', options);
+        return formattedDate.replace(/\//g, '-');
+    }
+    </script>
 </body>
 </html>

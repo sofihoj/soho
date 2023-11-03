@@ -1,4 +1,3 @@
-let User = require('../models/User');
 const db = require('../database/models')
 
 async function userLoggedMiddleware(req, res, next) {

@@ -8,55 +8,70 @@
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/admin.css">
     </head>
+
     <body>
         <%- include('../partials/header.ejs')%>
-        <main>
-            <%- include('../partials/sidebar.ejs')%>
-            <section class="main-header">
-                <p>Mi compra</p>
-            </section>
-            <div class="admin-menu">
-                <div class="add-product">
-                    <div class="icon-add"><i class="fa-solid fa-bag-shopping fa-beat-fade"></i></div>
-                    <p>Compra nro. XX(id de compra)</p>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Precio x unidad</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                              <tr>
-                                <td>producto.nombre</td>
-                                <td>producto.precio</td>
-                                <td>producto.cantidad</td>
-                                <td>producto.precio x producto.cantidad</td>
-                              </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3">Total</td>
-                            <td>suma subtotales</td>
-                          </tr>
-                    </tfoot>
-                </table>
-                <div class="table-btn">
-                    <% if (isLogged) { %>
-                        <% if (userLogged.tipo_usuario_id === 2) { %>
-                            <button type="submit">Finalizar compra</button>
-                        <% } else { %>
-                            <p>No puedes hacer compras como admin.</p>
-                        <% } %>
-                    <% } else { %>
-                        <p>Necesitas iniciar sesión para continuar.</p>
-                    <% } %>
-                </div>
-            </div>
-        </main>
-        <%- include('../partials/footer.ejs')%>
+            <main>
+                <%- include('../partials/sidebar.ejs')%>
+                    <section class="main-header">
+                        <p>Mi compra</p>
+                    </section>
+                    <div class="admin-menu">
+                        <div class="add-product">
+                            <div class="icon-add"><i class="fa-solid fa-bag-shopping fa-beat-fade"></i></div>
+                            <p>Mi compra</p>
+                        </div>
+                        <form id="formularioCompra" method="post" action="/users/profile/purchases/">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio x unidad</th>
+                                        <th>Cantidad</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr>
+                                    <td>producto.nombre</td>
+                                    <td>producto.precio</td>
+                                    <td>producto.cantidad</td>
+                                    <td>producto.precio x producto.cantidad</td>
+                                </tr> -->
+                                </tbody>
+                                <tfoot>
+                                    <!-- <tr>
+                                    <td colspan="3">Total</td>
+                                    <td>suma subtotales</td>
+                                </tr> -->
+                                </tfoot>
+                            </table>
+                            <input type="hidden" name="carrito" id="carrito">
+                            <div class="table-btn">
+                                <% if (isLogged) { %>
+                                    <% if (userLogged.tipo_usuario_id===2) { %>
+                                        <button id="finalizarCompra" type="button" onclick="enviarCarrito()">Finalizar compra</button>
+                                        <% } else { %>
+                                            <p>No puedes hacer compras como admin.</p>
+                                            <% } %>
+                                                <% } else { %>
+                                                    <p>Necesitas iniciar sesión para continuar.</p>
+                                                    <% } %>
+                            </div>
+                        </form>
+                    </div>
+            </main>
+            <%- include('../partials/footer.ejs')%>
+            <script src="/js/purchases.js"></script>
+            <script>
+                // Función para enviar el carrito al servidor cuando se finaliza la compra
+                function enviarCarrito() {
+                    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+                    document.getElementById('carrito').value = JSON.stringify(carrito);
+                    document.getElementById('formularioCompra').submit();
+                    localStorage.clear();
+                }
+            </script>
     </body>
+
 </html>

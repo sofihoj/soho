@@ -2,9 +2,6 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator')
 const db = require('../database/models');
 
-
-const User = require('../models/User');
-
 const usersController = {
     signup: (req, res) => {
         res.render('users/signup')
@@ -108,17 +105,44 @@ const usersController = {
             return res.status(500).send('Error en el servidor');
         });
     },
-    profile: (req, res) => {
-        const userCategory = req.session.userLogged.tipo_usuario_id;
+    profile: async (req, res) => {
+        // const userCategory = req.session.userLogged.tipo_usuario_id;
 
-        if (userCategory === 1) {
-            return res.redirect('/administrar');
-        } else if (userCategory === 2) {
-            return res.render('users/profile', {
-                user: req.session.userLogged
-            });
-        } else {
-            return res.status(400).send('Categoría de usuario desconocida');
+        // if (userCategory === 1) {
+        //     return res.redirect('/administrar');
+        // } else if (userCategory === 2) {
+        //     return res.render('users/profile', {
+        //         user: req.session.userLogged
+        //     });
+        // } else {
+        //     return res.status(400).send('Categoría de usuario desconocida');
+        // }
+        try {
+            const userId = req.session.userLogged.id;
+            const userCategory = req.session.userLogged.tipo_usuario_id;
+
+            if (userCategory === 1) {
+                return res.redirect('/administrar');
+            } else if (userCategory === 2) {
+                // Obtén las compras del usuario desde la base de datos
+                const compras = await db.Compra.findAll({
+                    where: {
+                        usuario_id: userId,
+                    },
+                    // Puedes incluir otras asociaciones o atributos que desees mostrar en la vista
+                });
+
+                return res.render('users/profile', {
+                    user: req.session.userLogged,
+                    purchases: compras,
+                    formatDate
+                });
+            } else {
+                return res.status(400).send('Categoría de usuario desconocida');
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('Error en el servidor');
         }
     },
     edit: (req, res) => {
@@ -228,6 +252,12 @@ const usersController = {
         const isLogged = req.session.userLogged ? true : false;
         res.render('users/purchases', { isLogged });
     }
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleDateString('es-AR', options);
+    return formattedDate.replace(/\//g, '-');
 }
 
 module.exports = usersController;
