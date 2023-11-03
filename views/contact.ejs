@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bisne macrame | HOME</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+
+<body>
+    <%- include('./partials/header.ejs')%>
+        <main>
+            <%- include('./partials/sidebar.ejs')%>
+                <div class="banner">
+                    <img src="/img/home-banner.jpg" alt="">
+                </div>
+                <section class="popular-categories">
+                    <div class="main-bar">
+                        <p> Contáctanos </p>
+                    </div>
+
+                    <body>
+                        <div class="tituloContact">
+                            <h2 style='text-align: center'> Servicio al Cliente </h2>
+                        </div>
+                        <div class="subtituloContact">
+                            <h3>
+                                <a href="servicioalcliente@dhbisne.com"> servicioalcliente@dhbisne.com </a>
+                            </h3>
+                        </div>
+                        <div class="tituloContact">
+                            <h2> PQR´S </h2>
+                        </div>
+                        <div class="tituloContact">
+                            <h2> Wholesale </h2>
+                        </div>
+                        <div class="subtituloContact">
+                            <h3> <a href="wholesae@dhbisne.com"> wholesale@dhbisne.com </a> </h3>
+                        </div>
+                    </body>
+                    <%- include('./partials/footer.ejs')%>
+                </section>
+        </main>
+</body>
+
+</html>

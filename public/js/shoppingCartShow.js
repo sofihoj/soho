@@ -100,4 +100,23 @@ document.addEventListener('DOMContentLoaded', function () {
             renderizarCarrito();
         }
     });
+
+    const btnContinuar = document.querySelector('.btnContinuar');
+    const anchorContinuar = document.querySelector('.continuarA');
+
+    // Función para habilitar o deshabilitar el botón de continuar según el estado del carrito
+    function toggleContinuarButton() {
+        if (cart.length === 0) {
+            // Si el carrito está vacío, deshabilita el botón de continuar
+            btnContinuar.classList.add('disabled');
+            anchorContinuar.href = "#"; // Agrega un atributo href válido o remueve el atributo según tu caso
+        } else {
+            // Si hay productos en el carrito, habilita el botón de continuar
+            btnContinuar.classList.remove('disabled');
+            anchorContinuar.href = "/users/profile/purchases"; // Agrega el enlace correcto al botón
+        }
+    }
+
+    // Llama a la función para habilitar o deshabilitar el botón de continuar al cargar la página
+    toggleContinuarButton();
 });

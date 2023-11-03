@@ -1,0 +1,47 @@
+.meet {
+    color: #9A6C6C;
+    font-family: 'Noto Sans', sans-serif;
+    text-transform: uppercase;
+}
+.titulo{
+
+    font-family: 'Noto Sans', sans-serif;
+    color: #9A6C6C;
+    font-size: 24px;
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+}
+.subtitulo{
+    font-family: 'Noto Sans', sans-serif;
+    color: #9A6C6C;
+    font-size: 22px;
+    margin-left: 20px;
+    text-transform: uppercase;
+}
+
+.aboutdiv p{
+    font-family: 'Noto Sans', sans-serif;
+    color: #9A6C6C;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 40px 40px;
+    text-align: center;
+}
+
+.tituloContact {
+    color: #9A6C6C;
+    font-family: 'Noto Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: center;
+}
+
+.subtituloContact {
+    font-family: 'Noto Sans', sans-serif;
+    color: #9A6C6C;
+    font-size: 14px;
+    margin-left: 20px;
+    text-align: center;
+}

@@ -109,6 +109,12 @@ const controller = {
             res.status(500).send('Error interno del servidor');
         })
     },
+    about: (req, res) => {
+        res.render('about')
+    },
+    contact: (req, res) => {
+        res.render('contact')
+    },
 }
 
 function formatear(categoria) {
