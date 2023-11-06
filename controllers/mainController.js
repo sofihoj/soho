@@ -57,7 +57,7 @@ const controller = {
                 limit: productsPerPage,
                 order: [[sortField, sortOrder]]
             });
-            res.render('allProducts', { productos, formatear, formatearEspacio, currentPage: Number(page), totalPages });
+            res.render('allProducts', { productos, formatear, formatearEspacio, currentPage: Number(page), totalPages, req });
         } catch (error) {
             console.error('Error al obtener productos de la base de datos:', error);
             res.status(500).send('Error interno del servidor');
@@ -98,7 +98,7 @@ const controller = {
         })
         .then((productos)=>{
             if (productos.length > 0){
-                res.render('search', {productos, formatearEspacio} )
+                res.render('search', {productos, formatearEspacio, searchProduct} )
             } else {
                 const sinResultados = `No se encontraron resultados de tu búsqueda "${searchProduct}"`;
                 res.render('search', {productos, formatearEspacio, sinResultados} )

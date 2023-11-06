@@ -9,7 +9,7 @@ const validationsProductEdit = require('../middlewares/validationsProductEdit')
 //const errorValidateEdit = require("../middlewares/errorValidationEdit");
 
 function formatearEspacio(categoryName) {
-    return categoryName.replace(' ', '-').toLowerCase();
+    return categoryName.replace(/\s+/g, '-').toLowerCase();
 }
 
 const storage = multer.diskStorage({

@@ -30,8 +30,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Categoría</th>
+                        <!-- <th>Nombre</th>
+                        <th>Categoría</th> -->
+                        <th>Nombre <a style="margin-right: 3px;" href="/administrar?sort=nombre&order=asc"><i class="fa-solid fa-arrow-up"></i></a><a href="/administrar?sort=nombre&order=desc"><i class="fa-solid fa-arrow-down"></i></a></th>
+                        <th>Categoría <a style="margin-right: 3px;" href="/administrar?sort=categoria&order=asc"><i class="fa-solid fa-arrow-up"></i></a><a href="/administrar?sort=categoria&order=desc"><i class="fa-solid fa-arrow-down"></a></th>
+                        <th>Creación <a style="margin-right: 3px;" href="/administrar?sort=created_at&order=asc"><i class="fa-solid fa-arrow-up"></i></a><a href="/administrar?sort=created_at&order=desc"><i class="fa-solid fa-arrow-down"></a></th>
                         <th>Ver</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
@@ -42,6 +45,7 @@
                           <tr>
                             <td><%= producto.nombre %></td>
                             <td><%= formatear(producto.categoria.categoria)  %></td>
+                            <td><%= producto.created_at.toLocaleDateString('es-ES') %></td>
                             <td><a href="/products/<%= formatearEspacio(producto.categoria.categoria) %>/<%= formatearEspacio(producto.nombre) %>"><i class="fa-solid fa-eye"></i></a></td>
                             <td><a href="/administrar/edit/<%= producto.nombre %>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <td><a href="/administrar/delete/<%= producto.nombre %>"><i class="fa-solid fa-trash"></i></a></td>

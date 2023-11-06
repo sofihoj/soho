@@ -70,8 +70,8 @@
     .card-producto {
         display: flex;
         flex-direction: column;
-        width: 130px;
-        height: 280px;
+        width: 136px;
+        height: 250px;
         margin: 20px 5px;
     }
 
@@ -83,6 +83,14 @@
     .photo {
         width: 100%;
         height: -webkit-fill-available;
+    }
+
+    .add-to-cart {
+        margin-bottom: 1em;
+        position: absolute;
+        bottom: -8.5%;
+        right: 5%;
+        left: 8%;
     }
 
     .add-to-cart button {

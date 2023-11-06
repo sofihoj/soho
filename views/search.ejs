@@ -14,7 +14,11 @@
         <main>
             <%- include('./partials/sidebar.ejs')%>
             <section class="main-header">
-                <p>Resultado de la búsqueda</p>
+                <% if (productos.length > 0) { %>
+                    <p>Resultado de la búsqueda: "<%= searchProduct %>"</p>
+                <% } else { %>
+                    <p>Resultado de la búsqueda</p>
+                <% } %>
             </section>
             <div class="productos" id="resultadosBusqueda">
                 <% if (productos.length > 0) { %>

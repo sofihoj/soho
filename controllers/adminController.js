@@ -3,14 +3,33 @@ const { validationResult } = require('express-validator')
 
 const controller = {
     administrar: async (req, res) => {
+        // try {
+        //   const productos = await db.Producto.findAll({
+        //     include: ['categoria']
+        // });
+        //   res.render('admin/administrar', { productos, formatear, formatearEspacio });
+        // } catch (error) {
+        //   console.error('Error al obtener productos de la base de datos:', error);
+        //   res.status(500).send('Error interno del servidor');
+        // }
         try {
-          const productos = await db.Producto.findAll({
-            include: ['categoria']
-        });
-          res.render('admin/administrar', { productos, formatear, formatearEspacio });
+            let orderColumn = req.query.sort || 'categoria';
+            let orderDirection = req.query.order || 'asc';
+
+            const productos = await db.Producto.findAll({
+                include: [{
+                    model: db.Categoria,
+                    as: 'categoria'
+                }],
+                order: [
+                    [db.sequelize.literal(orderColumn), orderDirection.toUpperCase()],
+                    ['nombre', 'ASC']
+                ]
+            });
+            res.render('admin/administrar', { productos, formatear, formatearEspacio });
         } catch (error) {
-          console.error('Error al obtener productos de la base de datos:', error);
-          res.status(500).send('Error interno del servidor');
+            console.error('Error al obtener productos de la base de datos:', error);
+            res.status(500).send('Error interno del servidor');
         }
       },
     create: async (req, res) => {
@@ -71,6 +90,7 @@ const controller = {
                 imagen: req.file.filename,
                 descripcion: descripcion,
                 categoria_id: categoria,
+                created_at: new Date()
             });
 
             return res.redirect('/administrar');

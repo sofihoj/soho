@@ -76,7 +76,7 @@
                 </form>
                 <a href="/users/profile" id="volver"><button>Volver</button></a>
                 <form class="form" action="/users/profile/edit-password?_method=PUT" method="POST">
-                    <p id="change-password">Quieres cambiar la contrseña?</p>
+                    <p id="change-password">Quieres cambiar la contraseña?</p>
                     <div class="input-box">
                         <input type="password" name="password" id="oldPassword" placeholder="Contraseña actual" class="<%= locals.errors && errors.password ? 'input-error' : null  %>" >
                         <% if (locals.errors && errors.password) { %>

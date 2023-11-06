@@ -62,11 +62,11 @@
             </div>
         </div>
         <div class="pagination">
-            <a class="paginationBtn <%= (currentPage === 1) ? 'disabled' : '' %>" href="/products?page=<%= currentPage - 1 %>">Anterior</a>
+            <a class="paginationBtn <%= (currentPage === 1) ? 'disabled' : '' %>" href="/products?page=<%= currentPage - 1 %>&sort=<%= req.query.sort %>&order=<%= req.query.order %>">Anterior</a>
             <span>
                 Página <%= currentPage %> de <%= totalPages %>
             </span>
-            <a class="paginationBtn <%= (currentPage === totalPages) ? 'disabled' : '' %>" href="/products?page=<%= currentPage + 1 %>">Siguiente</a>
+            <a class="paginationBtn <%= (currentPage === totalPages) ? 'disabled' : '' %>" href="/products?page=<%= currentPage + 1 %>&sort=<%= req.query.sort %>&order=<%= req.query.order %>">Siguiente</a>
         </div>
     </main>
     <%- include('./partials/footer.ejs')%>

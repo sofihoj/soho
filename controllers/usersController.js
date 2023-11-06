@@ -62,48 +62,48 @@ const usersController = {
         }
         const { email, password } = req.body;
         db.Usuario.findOne({ where: { email } })
-        .then(userToLogin => {
-            if (!userToLogin) {
-                return res.render('users/login', {
-                    errors: {
-                        email: {
-                            msg: 'Usuario no registrado'
-                        }
-                    },
-                });
-            }
-
-            const isOkThePassword = bcrypt.compareSync(password, userToLogin.contraseña);
-
-            if (isOkThePassword) {
-                // Eliminar la contraseña antes de almacenarla en la sesión
-                delete userToLogin.contraseña;
-                req.session.userLogged = userToLogin; // Guardar la sesión del usuario
-
-                if (req.body.remember_user) {
-                    res.cookie('userEmail', email, { maxAge: (1000 * 60) * 60 });
+            .then(userToLogin => {
+                if (!userToLogin) {
+                    return res.render('users/login', {
+                        errors: {
+                            email: {
+                                msg: 'Usuario no registrado'
+                            }
+                        },
+                    });
                 }
 
-                if (userToLogin.tipo_usuario_id === 2) {
-                    return res.redirect('/users/profile');
-                } else if (userToLogin.tipo_usuario_id === 1) {
-                    return res.redirect('/administrar');
+                const isOkThePassword = bcrypt.compareSync(password, userToLogin.contraseña);
+
+                if (isOkThePassword) {
+                    // Eliminar la contraseña antes de almacenarla en la sesión
+                    delete userToLogin.contraseña;
+                    req.session.userLogged = userToLogin; // Guardar la sesión del usuario
+
+                    if (req.body.remember_user) {
+                        res.cookie('userEmail', email, { maxAge: (1000 * 60) * 60 });
+                    }
+
+                    if (userToLogin.tipo_usuario_id === 2) {
+                        return res.redirect('/users/profile');
+                    } else if (userToLogin.tipo_usuario_id === 1) {
+                        return res.redirect('/administrar');
+                    }
+                } else {
+                    return res.render('users/login', {
+                        errors: {
+                            password: {
+                                msg: 'Contraseña incorrecta'
+                            }
+                        },
+                        oldData: req.body
+                    });
                 }
-            } else {
-                return res.render('users/login', {
-                    errors: {
-                        password: {
-                            msg: 'Contraseña incorrecta'
-                        }
-                    },
-                    oldData: req.body
-                });
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            return res.status(500).send('Error en el servidor');
-        });
+            })
+            .catch(error => {
+                console.error(error);
+                return res.status(500).send('Error en el servidor');
+            });
     },
     profile: async (req, res) => {
         // const userCategory = req.session.userLogged.tipo_usuario_id;
@@ -163,26 +163,26 @@ const usersController = {
         let userId = req.session.userLogged.id
         db.Usuario
             .update({
-                    nombre: req.body.name,
-                    apellido: req.body.lastName,
-                    email: req.body.email,
-                    telefono: req.body.phoneNumber,
-                    direccion: req.body.address,
-                    ciudad: req.body.city
-                },
+                nombre: req.body.name,
+                apellido: req.body.lastName,
+                email: req.body.email,
+                telefono: req.body.phoneNumber,
+                direccion: req.body.address,
+                ciudad: req.body.city
+            },
                 {
-                    where: {id:userId}
+                    where: { id: userId }
                 })
-                .then(() => {
-                    // Después de la actualización en la base de datos, actualiza la sesión del usuario
-                    return db.Usuario.findByPk(userId); // Recupera los datos actualizados del usuario
-                })
-                .then(updatedUser => {
-                    // Actualiza la sesión con los datos actualizados del usuario
-                    req.session.userLogged = updatedUser.get({ plain: true });
+            .then(() => {
+                // Después de la actualización en la base de datos, actualiza la sesión del usuario
+                return db.Usuario.findByPk(userId); // Recupera los datos actualizados del usuario
+            })
+            .then(updatedUser => {
+                // Actualiza la sesión con los datos actualizados del usuario
+                req.session.userLogged = updatedUser.get({ plain: true });
 
-                    return res.redirect('/users/profile');
-                })
+                return res.redirect('/users/profile');
+            })
     },
     changePassword: async (req, res) => {
         const validationErrors = validationResult(req);
@@ -228,9 +228,7 @@ const usersController = {
             return res.status(500).send('Error interno del servidor');
         }
     },
-    destroy: (req, res) => {
-        //const userId = req.session.userLogged.id; // ID del usuario autenticado
-
+    destroy: async (req, res) => {
         db.Usuario
         .destroy({
             where: {

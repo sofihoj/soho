@@ -48,6 +48,11 @@ module.exports = (sequelize, dataTypes) => {
         inventario_id: {
             type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull: true
+        },
+        created_at: {
+            type: dataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         }
     };
 
