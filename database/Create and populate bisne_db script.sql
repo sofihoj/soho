@@ -18,7 +18,7 @@
 --
 -- Table structure for table `categorias_productos`
 --
-CREATE TABLE bisne_db;
+CREATE DATABASE bisne_db;
 USE bisne_db;
 
 DROP TABLE IF EXISTS `categorias_productos`;
